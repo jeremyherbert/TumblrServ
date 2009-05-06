@@ -1,0 +1,8 @@
+import urllib
+
+urlopener = urllib.URLopener()
+opener = urlopener.open('http://ilikewatermelon.tumblr.com/api/read/json?num=50')
+source = opener.read()
+opener.close()
+
+source = source.replace('var tumblr_api_read = ', '')
