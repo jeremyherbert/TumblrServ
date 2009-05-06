@@ -39,6 +39,7 @@ class Post(object):
         self._attr = attr
         self._markup = markup
         self.post_index = post_index
+        self._critical_keys = []
     
     def validate(self):
         try:
@@ -55,25 +56,19 @@ class Post(object):
             return False
             
     def generate_html(self):
-        #if self._attr.has_key('')
         return replace_several([
             ('{Permalink}', self._attr['url']),
             ('{PostID}', self._attr['id']),
             ], self._markup)
         
     def __str__(self):
-        return "<Post %s: %s>" % ( self.post_index, str(self._attr))
+        return "<%sPost %s: %s>" % (self._type.capitalize(), self.post_index, str(self._attr))
         
 class TextPost(Post):        
-    def validate(self):
-        try:
-            return Post.validate(self) and within_constraints([
-                (has_keys(self._attr, ['regular-body']), '%s is missing a critical attribute key' % str(self)),
-                (self._attr['type'] == 'regular', '%s has an incorrect type attribute' % str(self)),
-                ])
-        except Exception, detail:
-            print "An error occurred: The validation code failed:\n" + str(self) + str(detail)
-            return False
+    def __init__(self, post_index, attr, markup):
+        self._type = 'regular'
+        self._critical_keys = ['regular-body']
+        Post.__init__(self, post_index, attr, markup)
             
     def generate_html(self):
         if not self.validate(): return ''
@@ -86,20 +81,12 @@ class TextPost(Post):
             ], output)
             
         return output
-        
-    def __str__(self):
-         return "<TextPost %s: %s>" % ( self.post_index, str(self._attr.get('regular-title', '')) )
 
 class PhotoPost(Post):        
-    def validate(self):
-        try:
-            return Post.validate(self) and within_constraints([
-                (has_keys(self._attr, ['photo-url-500', 'photo-url-400', 'photo-url-250', 'photo-url-100', 'photo-url-75']), '%s is missing a critical attribute key' % str(self)),
-                (self._attr['type'] == 'photo', '%s has an incorrect type.' % (str(self))),
-                ])
-        except Exception, detail:
-            print "An error occurred: The validation code failed:\n" + str(self) + str(detail)
-            return False
+    def __init__(self, post_index, attr, markup):
+        self._type = 'photo'
+        self._critical_keys = ['photo-url-500', 'photo-url-400', 'photo-url-250', 'photo-url-100', 'photo-url-75']
+        Post.__init__(self, post_index, attr, markup)
             
     def generate_html(self):
         if not self.validate(): return ''
@@ -131,20 +118,12 @@ class PhotoPost(Post):
             ], output)
             
         return output
-        
-    def __str__(self):
-         return "<PhotoPost %s: %s>" % ( self.post_index, str(self._attr.get('regular-title', '')) )
 
-class QuotePost(Post):        
-    def validate(self):
-        try:
-            return Post.validate(self) and within_constraints([
-                (has_keys(self._attr, ['quote']), '%s is missing a critical attribute key' % str(self)),
-                (self._attr['type'] == 'quote', '%s has an incorrect type attribute' % str(self)),
-                ])
-        except Exception, detail:
-            print "An error occurred: The validation code failed:\n" + str(self) + str(detail)
-            return False
+class QuotePost(Post):
+    def __init__(self, post_index, attr, markup):
+        self._type = 'quote'
+        self._critical_keys = ['quote']
+        Post.__init__(self, post_index, attr, markup)
             
     def generate_html(self):
         if not self.validate(): return ''
@@ -158,13 +137,29 @@ class QuotePost(Post):
             ], output)
             
         return output
-        
-    def __str__(self):
-         return "<QuotePost %s: %s>" % ( self.post_index, str(self._attr.get('regular-title', '')) )
 
 class LinkPost(Post):        
     def __init__(self, post_index, attr, markup):
         self._type = 'link'
+        self._critical_keys = ['URL']
+        Post.__init__(self, post_index, attr, markup)
+        
+    def generate_html(self):
+        if not self.validate(): return ''
+        
+        output = Post.generate_html(self)
+        output = render_block_if('Source', 'Source', self._attr.get('quote-source', ''), output)
+        
+        output = replace_several([
+            ('{Quote}', self._attr.get('quote-text', '')),
+            ('{Length}', 'medium'), # this is cheap, but no one actually uses this so it doesn't matter
+            ], output)
+            
+        return output
+
+class ChatPost(Post):        
+    def __init__(self, post_index, attr, markup):
+        self._type = 'chat'
         self._critical_keys = ['URL']
         Post.__init__(self, post_index, attr, markup)
 
@@ -180,6 +175,3 @@ class LinkPost(Post):
             ], output)
 
         return output
-
-    def __str__(self):
-         return "<QuotePost %s: %s>" % ( self.post_index, str(self._attr.get('regular-title', '')) )
