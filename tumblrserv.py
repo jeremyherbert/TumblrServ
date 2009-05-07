@@ -5,51 +5,76 @@
 #
 #################################
 
-import os, sys, ftplib, yaml, cherrypy
+import os, sys, ftplib, yaml, cherrypy, re, pdb
 
 from src.post_classes import *
 from src import json
 
-print "hellooo"
+post_types = ['Regular', 'Photo', 'Quote', 'Link', 'Conversation', 'Video', 'Audio', 'Conversation']
 
-test_text = {'bookmarklet': 0,
- 'date': 'Sun, 03 May 2009 18:45:00',
- 'date-gmt': '2009-05-03 08:45:00 GMT',
- 'feed-item': '',
- 'format': 'html',
- 'from-feed-id': 0,
- 'id': 102894242,
- 'mobile': 0,
- 'regular-body': '<p>Neutrophils (a type of white blood cell) are so good at their job of destroying cells that they often damage some tissue of the host. So when the host is deciding whether and how to attack a germ, it actually takes into account the level of collateral damage that will occur. Neat!</p>\n<p><i>taken from: doi:10.1038/nri1785</i></p>',
- 'regular-title': 'Interesting fact of the day',
- 'type': 'regular',
- 'unix-timestamp': 1241340300,
- 'url': 'http://ilikewatermelon.tumblr.com/post/102894242'}
- 
-test_photo = {'bookmarklet': 0,
-             'date': 'Tue, 05 May 2009 19:36:09',
-             'date-gmt': '2009-05-05 09:36:09 GMT',
-             'feed-item': '',
-             'format': 'html',
-             'from-feed-id': 0,
-             'id': 103686985,
-             'mobile': 0,
-             'photo-caption': 'srsly.',
-             'photo-url-100': 'http://22.media.tumblr.com/hq1cnYRytn3ya31czE9Ird3No1_100.jpg',
-             'photo-url-250': 'http://15.media.tumblr.com/hq1cnYRytn3ya31czE9Ird3No1_250.jpg',
-             'photo-url-400': 'http://20.media.tumblr.com/hq1cnYRytn3ya31czE9Ird3No1_400.jpg',
-             'photo-url-500': 'http://5.media.tumblr.com/hq1cnYRytn3ya31czE9Ird3No1_500.jpg',
-             'photo-url-75': 'http://20.media.tumblr.com/hq1cnYRytn3ya31czE9Ird3No1_75sq.jpg',
-             'photos': [],
-             'type': 'photo',
-             'unix-timestamp': 1241516169,
-             'url': 'http://ilikewatermelon.tumblr.com/post/103686985'}
- 
-mk_t = """<li class="post text">{block:Title}<h3><a href="{Permalink}">{Title}</a></h3>{/block:Title}{Body}</li>
-"""
+def replace_all_except_block(block_name, markup):
+    output = markup
+    for block in post_types:
+        if not block_name == block:
+            output = re.sub(re.compile(r'{block:%s}.+{/block:%s}' % (block, block), re.DOTALL), '', output)
+    output = replace_several([
+        ('{block:%s}' % (block_name), ''),
+        ('{/block:%s}' % (block_name), ''),
+        ], output)
+    return output
 
-mk_p = """<li class="post photo"><img src="{PhotoURL-400}" alt="{PhotoAlt}"/>{block:Caption}<div class="caption">{Caption}</div>{/block:Caption}</li>
-"""
+if os.path.exists('data/data.yml'):
+    temp_handle = open('data/data.yml', 'r')
+    data = yaml.load(temp_handle.read())
+    temp_handle.close()
+else:
+    print "The file data/data.yml does not exist."
+    sys.exit(1)
+    
+temp_handle = open('themes/theme.thtml', 'r')
+theme_markup = temp_handle.read()
+temp_handle.close()
 
-t = TextPost(0,test_text,mk_t)
-p = PhotoPost(1, test_photo, mk_p)
+posts_markup = re.search(r'{block:Posts}(?P<markup>.+){/block:Posts}', theme_markup, re.DOTALL).group('markup')
+        
+meta_colours = re.findall(r'name=\"color:(.+)\" content=\"#([0-9A-Fa-f]{3,6})\"', theme_markup)
+for name, colour in meta_colours:
+    theme_markup = theme_markup.replace("{color:%s}" % name, "#" + colour)
+
+posts = []
+for post in data['posts']:
+    if post['type'] == 'regular':
+        posts.append(TextPost( data['posts'].index(post), post, replace_all_except_block('Regular', posts_markup)))
+    elif post['type'] == 'photo':
+        posts.append(PhotoPost( data['posts'].index(post), post, replace_all_except_block('Photo', posts_markup)))
+    elif post['type'] == 'quote':
+        posts.append(QuotePost( data['posts'].index(post), post, replace_all_except_block('Quote', posts_markup)))
+    elif post['type'] == 'link':
+        posts.append(LinkPost( data['posts'].index(post), post, replace_all_except_block('Link', posts_markup)))
+    elif post['type'] == 'conversation':
+        posts.append(ChatPost( data['posts'].index(post), post, replace_all_except_block('Conversation', posts_markup)))
+    elif post['type'] == 'video':
+        posts.append(VideoPost( data['posts'].index(post), post, replace_all_except_block('Video', posts_markup)))
+    elif post['type'] == 'audio':
+        posts.append(AudioPost( data['posts'].index(post), post, replace_all_except_block('Audio', posts_markup)))
+        
+post_html = ''
+for post in posts:
+    post_html += post.generate_html()
+    
+final = re.sub(re.compile(r'{block:Posts}.*{/block:Posts}',re.DOTALL) , post_html, theme_markup, )
+
+final = replace_several([
+    ('{Title}', data['tumblelog'].get('title', ''))
+    ], final)
+final = render_conditional_block('Description', 'Description', data['tumblelog'].get('description', ''), final)
+
+repl = '''<iframe src="http://www.tumblr.com/dashboard/iframe?src=http%3A%2F%2Filikewatermelon.tumblr.com%2F" 
+border="0" scrolling="no" width="278" height="25" allowTransparency="true"
+frameborder="0" style="position:absolute; z-index:1337; top:0px; right:0px; border:0px;
+background-color:transparent; overflow:hidden;" id="tumblr_controls"></iframe></body>
+'''
+final = final.replace('</body>', repl)
+temp = open('out.html', 'w')
+temp.write(final.encode('utf-8'))
+temp.close()

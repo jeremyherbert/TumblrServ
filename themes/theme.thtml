@@ -1,0 +1,431 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+	"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+    <!-- DEFAULT COLORS -->
+    <meta name="color:Background" content="#222"/>
+    <meta name="color:Content Background" content="#fff"/>
+    <meta name="color:Title" content="#666"/>
+    <meta name="color:Description" content="#777"/>
+    <meta name="color:Nav Links" content="#44A3E2"/>
+    <meta name="color:Date" content="#ccc"/>
+    <meta name="color:Post Title" content="#444"/>    
+    <meta name="color:Text" content="#555"/>
+    <meta name="color:Inline Link" content="#111"/>
+    <meta name="color:Quote" content="#444"/>
+    <meta name="color:Quote Source" content="#666"/>
+    <meta name="color:Link Post" content="#666"/>
+    <meta name="color:Conversation Background 1" content="#f4f4f4"/>
+    <meta name="color:Conversation Background 2" content="#e8e8e8"/>
+    <meta name="color:Conversation Border" content="#555"/>
+    <meta name="color:Conversation Text" content="#000"/>
+    <meta name="color:Caption" content="#888"/>
+    <meta name="color:Content Decoration" content="#aaa"/>
+    <meta name="color:Footer" content="#eee"/>
+    <!-- END DEFAULT COLORS -->
+    
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+	<link rel="icon" href="{Favicon}"/>
+	<link rel="alternate" type="application/rss+xml" title="RSS" href="{RSS}"/>
+    <title>{Title}{block:PostSummary} - {PostSummary}{/block:PostSummary}</title>
+    
+	<style type="text/css">
+	    body {
+	        background: {color:Background} url('/themes/4/bg.gif');
+	        margin: 0px 0px 50px 60px;
+	        font: Normal 13px Arial, Helvetica, sans-serif;
+	        color: {color:Text};
+	    }
+
+	    #container {
+	        width: 500px;
+	        padding: 25px;
+	        background-color: {color:Content Background};
+	        border-bottom: solid 8px {color:Content Decoration};
+	    }
+	    
+        #nav {
+            text-align: right;
+            float: right;
+            margin-left: 30px;
+            margin-bottom: 10px;
+            font-size: 11px;
+            white-spacing: nowrap;
+        }
+
+						#nav #search {
+							margin: 5px 0;
+							text-align: right;
+						}
+        
+            #nav a {
+                color: {color:Nav Links};
+                font-weight: bold;
+            }
+            
+            #nav .dim {
+                filter: alpha(opacity=50); 
+                -moz-opacity: 0.5; 
+                opacity: 0.5;
+                margin: 0px 3px;
+            }
+
+	    h1 {
+	        color: {color:Title};
+	        margin: 0px 0px 10px 0px;
+	        font-weight: normal;
+	        font-size: 40px;
+	        letter-spacing: -1px;
+	    }
+
+	    h1 a {
+	        color: {color:Title};
+            text-decoration: none;
+        }
+	    
+	    #description {
+	        color: {color:Description};
+	        font-size: 11px;
+	        line-height: 18px;
+	        padding-right: 70px;
+	        margin-bottom: 30px;
+	    }
+	
+			#searchresultcount { 
+				margin: 15px 0;
+				text-align: center;
+			}
+	    
+	    .date {
+	        margin: 30px 0px 10px 0px;
+	        color: {color:Date};
+	        font-size: 24px;
+	        text-align: right;
+	        letter-spacing: -1px;
+	        text-transform: uppercase;
+	        border-bottom: solid 1px {color:Date};
+	    }
+	    
+	    div.post {
+            margin-bottom: 40px;
+            position: relative;
+        }
+
+	    div.post img.permalink {
+            border-width: 0px;
+            width: 23px;
+            height: 9px;
+            position: absolute;
+            top: 5px;
+            right: 5px;
+            display: none;
+        }
+
+            div.post:hover img.permalink {
+                display: block;
+            }
+
+        div.post h2 {
+            font-size: 14px;
+            color: {color:Post Title};
+            margin: 0px 0px 5px 0px;
+        }
+
+        div.post h2 a {
+            color: {color:Post Title};
+            text-decoration: none;
+        }
+        
+        a {
+            color: {color:Inline Link};
+        }
+        
+        /* Regular Post */
+        div.post div.regular {
+            font: Normal 11px 'Lucida Grande', Verdana, Arial, sans-serif;
+            line-height: 17px;
+        }
+
+            div.post div.regular blockquote {
+                font-style: italic;
+            }
+        
+        /* Photo Post */
+        div.post div.photo img {
+            border-width: 0px;
+        }
+
+        div.post div.photo div.caption {
+            font-size: 11px;
+            margin-top: 5px;
+            color: {color:Caption};
+        }
+        
+            div.post div.photo div.caption a {
+                color: {color:Caption};
+            }
+        
+        /* Quote Post */
+        div.post div.quote {
+            padding: 0px 30px 0px 30px;
+        }
+        
+            div.post div.quote span.quote {
+                font-size: 24px;
+                color: {color:Quote};
+            }
+
+                div.post div.quote span.quote a {
+                    color: {color:Quote};
+                }
+
+                div.post div.quote span.quote big.quote {
+                    font: Bold 60px Georgia, serif;
+                    line-height: 1px;
+                    vertical-align: -23px;
+                    opacity: 0.4;
+                    -moz-opacity: 0.4;
+                    filter: alpha(opacity=40);
+                }
+
+                    div.post div.quote span.quote big.quote a {
+                        text-decoration: none;
+                    }
+        
+            div.post div.quote div.source {
+                font-size: 16px;
+                color: {color:Quote Source};
+            }
+
+                div.post div.quote div.source a {
+                    color: {color:Quote Source};
+                }
+        
+        /* Link Post */
+        div.post div.link {
+            color: {color:Link Post};
+            font-size: 24px;
+            letter-spacing: -1px;
+        }
+        
+            div.post div.link a.link {
+                color: {color:Link Post};
+                text-decoration: none;
+                border-bottom: dotted 1px {color:Link Post};
+            }
+
+            div.post div.link div.description {
+                font-size: 15px;
+                letter-spacing: 0px;
+                line-height: 20px;
+            }
+        
+        /* Conversation Post */
+        div.post div.conversation ul {
+            list-style-type: none;
+            margin: 0px;
+            padding: 0px 0px 0px 1px;
+            border-left: solid 5px {color:Conversation Border};
+        }
+        
+            div.post div.conversation ul li {
+                font-size: 12px;
+                padding: 4px 0px 4px 8px;
+                color: {color:Conversation Text};
+                margin-bottom: 1px;
+            }
+        
+                div.post div.conversation ul li span.label {
+                    font-weight: bold;
+                }
+        
+                div.post div.conversation ul li.odd {
+                    background-color: {color:Conversation Background 1};
+                }
+        
+                div.post div.conversation ul li.even {
+                    background-color: {color:Conversation Background 2};
+                }
+        
+        /* Audio Post */
+        div.post div.audio div.caption {
+            margin-top: 5px;
+            color: {color:Caption};
+            font-size: 11px;
+        }
+
+            div.post div.audio div.caption a {
+                color: {color:Caption};
+            }
+        
+        /* Video Post */
+        div.post div.video div.caption {
+            margin-top: 5px;
+            color: {color:Caption};
+            font-size: 11px;
+        }
+        
+            div.post div.video div.caption a {
+                color: {color:Caption};
+            }
+	    
+	    #navigation {
+	        font-size: 11px;
+            font-weight: bold;
+	    }
+	    
+	        #navigation a {
+                color: {color:Text};
+	            text-decoration: none;
+	        }
+	        
+	        #navigation a:hover {
+	            text-decoration: underline;
+	        }
+	    
+	    #footer {
+	        margin-top: 11px;
+	        font-size: 10px;
+	        color: {color:Footer};
+	    }
+	    
+	        #footer a {
+	            color: {color:Footer};
+	        }
+	
+			.query { font-weight: bold; }
+	        
+	    {CustomCSS}
+	</style>
+
+    <!--[if IE]>
+        <style type="text/css">
+            div.post div.quote span.quote big.quote {
+                line-height: 40px;
+            }
+        </style>
+    <![endif]-->
+</head>
+<body>
+    <div id="container">
+        <div id="nav">
+            <a href="/archive">Archive</a>
+            <span class="dim">/</span>
+            <a href="{RSS}">RSS</a>
+						<div id="search">
+							<form action="/search" method="get">
+							    <input type="text" size="15" name="q" value="{SearchQuery}"/>
+							    <input type="submit" value="Search"/>
+							</form>
+						</div>
+        </div>
+
+        <h1><a href="/">{Title}</a></h1>
+        
+        {block:Description}
+            <div id="description">
+                {Description}
+            </div>
+        {/block:Description}
+        
+				{block:SearchPage}
+				<div id="searchresultcount">
+					<p>Your search for <span class="query">{SearchQuery}</span> returned {SearchResultCount} result(s).</p>
+				</div>
+				{/block:SearchPage}
+
+        {block:Posts}
+            {block:NewDayDate}
+                <div class="date">
+                    {ShortMonth} {DayOfMonthWithZero}
+                </div>
+            {/block:NewDayDate}
+        
+            <div class="post">
+                <a href="{Permalink}"><img src="/themes/4/link.gif" 
+                class="permalink" alt="Permalink"/></a>
+
+                {block:Regular}
+                    <div class="regular">
+                        {block:Title}<h2><a href="{Permalink}">{Title}</a></h2>{/block:Title}
+                        {Body}
+                    </div>
+                {/block:Regular}
+                
+                {block:Photo}
+                    <div class="photo">
+                        {LinkOpenTag}<img src="{PhotoURL-500}" alt="{PhotoAlt}"/>{LinkCloseTag}
+                        {block:Caption}
+                            <div class="caption">{Caption}</div>
+                        {/block:Caption}
+                    </div>
+                {/block:Photo}
+                
+                {block:Quote}
+                    <div class="quote">
+                        <span class="quote">
+                            <big class="quote"><a href="{Permalink}">&#147;</a></big> {Quote}
+                        </span>
+                        {block:Source}<div class="source">&mdash; {Source}</div>{/block:Source}
+                    </div>
+                {/block:Quote}
+                
+                {block:Link}
+                    <div class="link">
+                        &#187; <a href="{URL}" class="link" {Target}>{Name}</a>
+                        {block:Description}
+                            <div class="description">{Description}</div>
+                        {/block:Description}
+                    </div>
+                {/block:Link}
+                
+                {block:Conversation}
+                    <div class="conversation">
+                        {block:Title}<h2><a href="{Permalink}">{Title}</a></h2>{/block:Title}
+                        <ul>
+                            {block:Lines}
+                                <li class="{Alt}">
+                                    {block:Label}<span class="label">{Label}</span>{/block:Label}
+                                    {Line}
+                                </li>
+                            {/block:Lines}
+                        </ul>
+                    </div>
+                {/block:Conversation}
+                
+                {block:Audio}
+                    <div class="audio">
+                        {AudioPlayerBlack}
+                        {block:Caption}
+                            <div class="caption">{Caption}</div>
+                        {/block:Caption}
+                    </div>
+                {/block:Audio}
+                
+                {block:Video}
+                    <div class="video">
+                        {Video-500}
+                        {block:Caption}
+                            <div class="caption">{Caption}</div>
+                        {/block:Caption}
+                    </div>
+                {/block:Video}
+            </div>
+        {/block:Posts}
+        
+        <div id="navigation">
+            {block:PreviousPage}
+                <a href="{PreviousPage}">previous</a> &nbsp;&nbsp;
+            {/block:PreviousPage}
+        
+            {block:NextPage}
+                <a href="{NextPage}">next &#187;</a>
+            {/block:NextPage}
+        </div>
+    </div>
+    <div id="footer">
+        subscribe via <a href="/rss">rss</a> &nbsp;/&nbsp;
+        powered by <a href="http://www.tumblr.com/" target="_blank">tumblr</a>
+    </div>
+</body>
+</html>

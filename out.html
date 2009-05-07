@@ -1,0 +1,1949 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+	"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+    <!-- DEFAULT COLORS -->
+    <meta name="color:Background" content="#222"/>
+    <meta name="color:Content Background" content="#fff"/>
+    <meta name="color:Title" content="#666"/>
+    <meta name="color:Description" content="#777"/>
+    <meta name="color:Nav Links" content="#44A3E2"/>
+    <meta name="color:Date" content="#ccc"/>
+    <meta name="color:Post Title" content="#444"/>    
+    <meta name="color:Text" content="#555"/>
+    <meta name="color:Inline Link" content="#111"/>
+    <meta name="color:Quote" content="#444"/>
+    <meta name="color:Quote Source" content="#666"/>
+    <meta name="color:Link Post" content="#666"/>
+    <meta name="color:Conversation Background 1" content="#f4f4f4"/>
+    <meta name="color:Conversation Background 2" content="#e8e8e8"/>
+    <meta name="color:Conversation Border" content="#555"/>
+    <meta name="color:Conversation Text" content="#000"/>
+    <meta name="color:Caption" content="#888"/>
+    <meta name="color:Content Decoration" content="#aaa"/>
+    <meta name="color:Footer" content="#eee"/>
+    <!-- END DEFAULT COLORS -->
+    
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+	<link rel="icon" href="{Favicon}"/>
+	<link rel="alternate" type="application/rss+xml" title="RSS" href="{RSS}"/>
+    <title>i like watermelon{block:PostSummary} - {PostSummary}{/block:PostSummary}</title>
+    
+	<style type="text/css">
+	    body {
+	        background: #222 url('/themes/4/bg.gif');
+	        margin: 0px 0px 50px 60px;
+	        font: Normal 13px Arial, Helvetica, sans-serif;
+	        color: #555;
+	    }
+
+	    #container {
+	        width: 500px;
+	        padding: 25px;
+	        background-color: #fff;
+	        border-bottom: solid 8px #aaa;
+	    }
+	    
+        #nav {
+            text-align: right;
+            float: right;
+            margin-left: 30px;
+            margin-bottom: 10px;
+            font-size: 11px;
+            white-spacing: nowrap;
+        }
+
+						#nav #search {
+							margin: 5px 0;
+							text-align: right;
+						}
+        
+            #nav a {
+                color: #44A3E2;
+                font-weight: bold;
+            }
+            
+            #nav .dim {
+                filter: alpha(opacity=50); 
+                -moz-opacity: 0.5; 
+                opacity: 0.5;
+                margin: 0px 3px;
+            }
+
+	    h1 {
+	        color: #666;
+	        margin: 0px 0px 10px 0px;
+	        font-weight: normal;
+	        font-size: 40px;
+	        letter-spacing: -1px;
+	    }
+
+	    h1 a {
+	        color: #666;
+            text-decoration: none;
+        }
+	    
+	    #description {
+	        color: #777;
+	        font-size: 11px;
+	        line-height: 18px;
+	        padding-right: 70px;
+	        margin-bottom: 30px;
+	    }
+	
+			#searchresultcount { 
+				margin: 15px 0;
+				text-align: center;
+			}
+	    
+	    .date {
+	        margin: 30px 0px 10px 0px;
+	        color: #ccc;
+	        font-size: 24px;
+	        text-align: right;
+	        letter-spacing: -1px;
+	        text-transform: uppercase;
+	        border-bottom: solid 1px #ccc;
+	    }
+	    
+	    div.post {
+            margin-bottom: 40px;
+            position: relative;
+        }
+
+	    div.post img.permalink {
+            border-width: 0px;
+            width: 23px;
+            height: 9px;
+            position: absolute;
+            top: 5px;
+            right: 5px;
+            display: none;
+        }
+
+            div.post:hover img.permalink {
+                display: block;
+            }
+
+        div.post h2 {
+            font-size: 14px;
+            color: #444;
+            margin: 0px 0px 5px 0px;
+        }
+
+        div.post h2 a {
+            color: #444;
+            text-decoration: none;
+        }
+        
+        a {
+            color: #111;
+        }
+        
+        /* Regular Post */
+        div.post div.regular {
+            font: Normal 11px 'Lucida Grande', Verdana, Arial, sans-serif;
+            line-height: 17px;
+        }
+
+            div.post div.regular blockquote {
+                font-style: italic;
+            }
+        
+        /* Photo Post */
+        div.post div.photo img {
+            border-width: 0px;
+        }
+
+        div.post div.photo div.caption {
+            font-size: 11px;
+            margin-top: 5px;
+            color: #888;
+        }
+        
+            div.post div.photo div.caption a {
+                color: #888;
+            }
+        
+        /* Quote Post */
+        div.post div.quote {
+            padding: 0px 30px 0px 30px;
+        }
+        
+            div.post div.quote span.quote {
+                font-size: 24px;
+                color: #444;
+            }
+
+                div.post div.quote span.quote a {
+                    color: #444;
+                }
+
+                div.post div.quote span.quote big.quote {
+                    font: Bold 60px Georgia, serif;
+                    line-height: 1px;
+                    vertical-align: -23px;
+                    opacity: 0.4;
+                    -moz-opacity: 0.4;
+                    filter: alpha(opacity=40);
+                }
+
+                    div.post div.quote span.quote big.quote a {
+                        text-decoration: none;
+                    }
+        
+            div.post div.quote div.source {
+                font-size: 16px;
+                color: #666;
+            }
+
+                div.post div.quote div.source a {
+                    color: #666;
+                }
+        
+        /* Link Post */
+        div.post div.link {
+            color: #666;
+            font-size: 24px;
+            letter-spacing: -1px;
+        }
+        
+            div.post div.link a.link {
+                color: #666;
+                text-decoration: none;
+                border-bottom: dotted 1px #666;
+            }
+
+            div.post div.link div.description {
+                font-size: 15px;
+                letter-spacing: 0px;
+                line-height: 20px;
+            }
+        
+        /* Conversation Post */
+        div.post div.conversation ul {
+            list-style-type: none;
+            margin: 0px;
+            padding: 0px 0px 0px 1px;
+            border-left: solid 5px #555;
+        }
+        
+            div.post div.conversation ul li {
+                font-size: 12px;
+                padding: 4px 0px 4px 8px;
+                color: #000;
+                margin-bottom: 1px;
+            }
+        
+                div.post div.conversation ul li span.label {
+                    font-weight: bold;
+                }
+        
+                div.post div.conversation ul li.odd {
+                    background-color: #f4f4f4;
+                }
+        
+                div.post div.conversation ul li.even {
+                    background-color: #e8e8e8;
+                }
+        
+        /* Audio Post */
+        div.post div.audio div.caption {
+            margin-top: 5px;
+            color: #888;
+            font-size: 11px;
+        }
+
+            div.post div.audio div.caption a {
+                color: #888;
+            }
+        
+        /* Video Post */
+        div.post div.video div.caption {
+            margin-top: 5px;
+            color: #888;
+            font-size: 11px;
+        }
+        
+            div.post div.video div.caption a {
+                color: #888;
+            }
+	    
+	    #navigation {
+	        font-size: 11px;
+            font-weight: bold;
+	    }
+	    
+	        #navigation a {
+                color: #555;
+	            text-decoration: none;
+	        }
+	        
+	        #navigation a:hover {
+	            text-decoration: underline;
+	        }
+	    
+	    #footer {
+	        margin-top: 11px;
+	        font-size: 10px;
+	        color: #eee;
+	    }
+	    
+	        #footer a {
+	            color: #eee;
+	        }
+	
+			.query { font-weight: bold; }
+	        
+	    {CustomCSS}
+	</style>
+
+    <!--[if IE]>
+        <style type="text/css">
+            div.post div.quote span.quote big.quote {
+                line-height: 40px;
+            }
+        </style>
+    <![endif]-->
+</head>
+<body>
+    <div id="container">
+        <div id="nav">
+            <a href="/archive">Archive</a>
+            <span class="dim">/</span>
+            <a href="{RSS}">RSS</a>
+						<div id="search">
+							<form action="/search" method="get">
+							    <input type="text" size="15" name="q" value="{SearchQuery}"/>
+							    <input type="submit" value="Search"/>
+							</form>
+						</div>
+        </div>
+
+        <h1><a href="/">i like watermelon</a></h1>
+        
+        
+            <div id="description">
+                Also, cakes are tasty.
+            </div>
+        
+        
+				{block:SearchPage}
+				<div id="searchresultcount">
+					<p>Your search for <span class="query">{SearchQuery}</span> returned {SearchResultCount} result(s).</p>
+				</div>
+				{/block:SearchPage}
+
+        
+            {block:NewDayDate}
+                <div class="date">
+                    {ShortMonth} {DayOfMonthWithZero}
+                </div>
+            {/block:NewDayDate}
+        
+            <div class="post">
+                <a href="http://ilikewatermelon.tumblr.com/post/103686985"><img src="/themes/4/link.gif" 
+                class="permalink" alt="Permalink"/></a>
+
+                
+                
+                
+                    <div class="photo">
+                        <img src="http://5.media.tumblr.com/hq1cnYRytn3ya31czE9Ird3No1_500.jpg" alt=""/>
+                        
+                            <div class="caption">srsly.</div>
+                        
+                    </div>
+                
+                
+                
+                
+                
+                
+                
+                
+                
+                
+                
+            </div>
+        
+            {block:NewDayDate}
+                <div class="date">
+                    {ShortMonth} {DayOfMonthWithZero}
+                </div>
+            {/block:NewDayDate}
+        
+            <div class="post">
+                <a href="http://ilikewatermelon.tumblr.com/post/103287702"><img src="/themes/4/link.gif" 
+                class="permalink" alt="Permalink"/></a>
+
+                
+                
+                
+                
+                
+                    <div class="quote">
+                        <span class="quote">
+                            <big class="quote"><a href="http://ilikewatermelon.tumblr.com/post/103287702">&#147;</a></big> You just ask them?
+                        </span>
+                        <div class="source">&mdash; <i>Richard Feynman</i> on how to pick up girls</div>
+                    </div>
+                
+                
+                
+                
+                
+                
+                
+                
+                
+            </div>
+        
+            {block:NewDayDate}
+                <div class="date">
+                    {ShortMonth} {DayOfMonthWithZero}
+                </div>
+            {/block:NewDayDate}
+        
+            <div class="post">
+                <a href="http://ilikewatermelon.tumblr.com/post/103252430"><img src="/themes/4/link.gif" 
+                class="permalink" alt="Permalink"/></a>
+
+                
+                
+                
+                    <div class="photo">
+                        <img src="http://1.media.tumblr.com/hq1cnYRytn2feayvxD6cOfu8o1_500.jpg" alt=""/>
+                        
+                            <div class="caption">My new pet.</div>
+                        
+                    </div>
+                
+                
+                
+                
+                
+                
+                
+                
+                
+                
+                
+            </div>
+        
+            {block:NewDayDate}
+                <div class="date">
+                    {ShortMonth} {DayOfMonthWithZero}
+                </div>
+            {/block:NewDayDate}
+        
+            <div class="post">
+                <a href="http://ilikewatermelon.tumblr.com/post/103251892"><img src="/themes/4/link.gif" 
+                class="permalink" alt="Permalink"/></a>
+
+                
+                
+                
+                
+                
+                    <div class="quote">
+                        <span class="quote">
+                            <big class="quote"><a href="http://ilikewatermelon.tumblr.com/post/103251892">&#147;</a></big> And ye shall know the truth, and the truth shall make you free.
+                        </span>
+                        <div class="source">&mdash; John 8:32</div>
+                    </div>
+                
+                
+                
+                
+                
+                
+                
+                
+                
+            </div>
+        
+            {block:NewDayDate}
+                <div class="date">
+                    {ShortMonth} {DayOfMonthWithZero}
+                </div>
+            {/block:NewDayDate}
+        
+            <div class="post">
+                <a href="http://ilikewatermelon.tumblr.com/post/102894242"><img src="/themes/4/link.gif" 
+                class="permalink" alt="Permalink"/></a>
+
+                
+                    <div class="regular">
+                        <h2><a href="http://ilikewatermelon.tumblr.com/post/102894242">Interesting fact of the day</a></h2>
+                        <p>Neutrophils (a type of white blood cell) are so good at their job of destroying cells that they often damage some tissue of the host. So when the host is deciding whether and how to attack a germ, it actually takes into account the level of collateral damage that will occur. Neat!</p>
+<p><i>taken from: doi:10.1038/nri1785</i></p>
+                    </div>
+                
+                
+                
+                
+                
+                
+                
+                
+                
+                
+                
+                
+                
+            </div>
+        
+            {block:NewDayDate}
+                <div class="date">
+                    {ShortMonth} {DayOfMonthWithZero}
+                </div>
+            {/block:NewDayDate}
+        
+            <div class="post">
+                <a href="http://ilikewatermelon.tumblr.com/post/101756927"><img src="/themes/4/link.gif" 
+                class="permalink" alt="Permalink"/></a>
+
+                
+                
+                
+                
+                
+                
+                
+                
+                
+                
+                
+                
+                
+                    <div class="video">
+                        <object width="500" height="336"><param name="movie" value="http://www.youtube.com/v/U8BWBn26bX0&amp;rel=0&amp;egm=0&amp;showinfo=0&amp;fs=1"></param><param name="wmode" value="transparent"></param><param name="allowFullScreen" value="true"></param><embed src="http://www.youtube.com/v/U8BWBn26bX0&amp;rel=0&amp;egm=0&amp;showinfo=0&amp;fs=1" type="application/x-shockwave-flash" width="500" height="336" allowFullScreen="true" wmode="transparent"></embed></object>
+                        
+                            <div class="caption"><i>Frontier Psychiatrist</i> by The Avalanches. I seriously can&#8217;t get enough of these guys today.</div>
+                        
+                    </div>
+                
+            </div>
+        
+            {block:NewDayDate}
+                <div class="date">
+                    {ShortMonth} {DayOfMonthWithZero}
+                </div>
+            {/block:NewDayDate}
+        
+            <div class="post">
+                <a href="http://ilikewatermelon.tumblr.com/post/101756672"><img src="/themes/4/link.gif" 
+                class="permalink" alt="Permalink"/></a>
+
+                
+                
+                
+                
+                
+                
+                
+                
+                
+                
+                
+                
+                
+                    <div class="video">
+                        <object width="500" height="336"><param name="movie" value="http://www.youtube.com/v/RrdlmHZHIJY&amp;rel=0&amp;egm=0&amp;showinfo=0&amp;fs=1"></param><param name="wmode" value="transparent"></param><param name="allowFullScreen" value="true"></param><embed src="http://www.youtube.com/v/RrdlmHZHIJY&amp;rel=0&amp;egm=0&amp;showinfo=0&amp;fs=1" type="application/x-shockwave-flash" width="500" height="336" allowFullScreen="true" wmode="transparent"></embed></object>
+                        
+                            <div class="caption"><i>Since I left you</i> by The Avalanches. These guys are seriously awesome.</div>
+                        
+                    </div>
+                
+            </div>
+        
+            {block:NewDayDate}
+                <div class="date">
+                    {ShortMonth} {DayOfMonthWithZero}
+                </div>
+            {/block:NewDayDate}
+        
+            <div class="post">
+                <a href="http://ilikewatermelon.tumblr.com/post/100203467"><img src="/themes/4/link.gif" 
+                class="permalink" alt="Permalink"/></a>
+
+                
+                    <div class="regular">
+                        
+                        I just stacked my bike and had to get my wrist slabbed in hospital. Note to self: don&#8217;t fall off bike.
+                    </div>
+                
+                
+                
+                
+                
+                
+                
+                
+                
+                
+                
+                
+                
+            </div>
+        
+            {block:NewDayDate}
+                <div class="date">
+                    {ShortMonth} {DayOfMonthWithZero}
+                </div>
+            {/block:NewDayDate}
+        
+            <div class="post">
+                <a href="http://ilikewatermelon.tumblr.com/post/97481266"><img src="/themes/4/link.gif" 
+                class="permalink" alt="Permalink"/></a>
+
+                
+                
+                
+                    <div class="photo">
+                        <img src="http://3.media.tumblr.com/aX6D3EZoYmd6a9p07r5FaMRao1_500.jpg" alt=""/>
+                        
+                            <div class="caption">(via <a href="http://supersonicelectronic.com/">supersonicelectronic</a>)</div>
+                        
+                    </div>
+                
+                
+                
+                
+                
+                
+                
+                
+                
+                
+                
+            </div>
+        
+            {block:NewDayDate}
+                <div class="date">
+                    {ShortMonth} {DayOfMonthWithZero}
+                </div>
+            {/block:NewDayDate}
+        
+            <div class="post">
+                <a href="http://ilikewatermelon.tumblr.com/post/94850943"><img src="/themes/4/link.gif" 
+                class="permalink" alt="Permalink"/></a>
+
+                
+                
+                
+                
+                
+                    <div class="quote">
+                        <span class="quote">
+                            <big class="quote"><a href="http://ilikewatermelon.tumblr.com/post/94850943">&#147;</a></big> We say that in the beginning that there was nothing but gas and rock&#8230; Where there are rocks, watch out, because the rocks are going eventually to come alive.
+                        </span>
+                        <div class="source">&mdash; Alan Watts</div>
+                    </div>
+                
+                
+                
+                
+                
+                
+                
+                
+                
+            </div>
+        
+            {block:NewDayDate}
+                <div class="date">
+                    {ShortMonth} {DayOfMonthWithZero}
+                </div>
+            {/block:NewDayDate}
+        
+            <div class="post">
+                <a href="http://ilikewatermelon.tumblr.com/post/94846638"><img src="/themes/4/link.gif" 
+                class="permalink" alt="Permalink"/></a>
+
+                
+                    <div class="regular">
+                        <h2><a href="http://ilikewatermelon.tumblr.com/post/94846638">There aren't enough true spy stories.</a></h2>
+                        It kind of makes sense though; these people train their whole lives to keep secrets. Why would they give them up now?
+                    </div>
+                
+                
+                
+                
+                
+                
+                
+                
+                
+                
+                
+                
+                
+            </div>
+        
+            {block:NewDayDate}
+                <div class="date">
+                    {ShortMonth} {DayOfMonthWithZero}
+                </div>
+            {/block:NewDayDate}
+        
+            <div class="post">
+                <a href="http://ilikewatermelon.tumblr.com/post/90581787"><img src="/themes/4/link.gif" 
+                class="permalink" alt="Permalink"/></a>
+
+                
+                
+                
+                
+                
+                    <div class="quote">
+                        <span class="quote">
+                            <big class="quote"><a href="http://ilikewatermelon.tumblr.com/post/90581787">&#147;</a></big> All this will not be finished in the first 100 days. Nor will it be finished in the first 1,000 days, not in the life of this Administration, nor even perhaps in our lifetime on this planet. But let us begin.
+                        </span>
+                        <div class="source">&mdash; John F. Kennedy, Former President of the United States</div>
+                    </div>
+                
+                
+                
+                
+                
+                
+                
+                
+                
+            </div>
+        
+            {block:NewDayDate}
+                <div class="date">
+                    {ShortMonth} {DayOfMonthWithZero}
+                </div>
+            {/block:NewDayDate}
+        
+            <div class="post">
+                <a href="http://ilikewatermelon.tumblr.com/post/90351312"><img src="/themes/4/link.gif" 
+                class="permalink" alt="Permalink"/></a>
+
+                
+                
+                
+                
+                
+                    <div class="quote">
+                        <span class="quote">
+                            <big class="quote"><a href="http://ilikewatermelon.tumblr.com/post/90351312">&#147;</a></big> Chivalry is dead. And women killed it.
+                        </span>
+                        <div class="source">&mdash; Dave Chappelle</div>
+                    </div>
+                
+                
+                
+                
+                
+                
+                
+                
+                
+            </div>
+        
+            {block:NewDayDate}
+                <div class="date">
+                    {ShortMonth} {DayOfMonthWithZero}
+                </div>
+            {/block:NewDayDate}
+        
+            <div class="post">
+                <a href="http://ilikewatermelon.tumblr.com/post/90005282"><img src="/themes/4/link.gif" 
+                class="permalink" alt="Permalink"/></a>
+
+                
+                
+                
+                
+                
+                    <div class="quote">
+                        <span class="quote">
+                            <big class="quote"><a href="http://ilikewatermelon.tumblr.com/post/90005282">&#147;</a></big> Shoot, coward, you&#8217;re only going to kill a man!
+                        </span>
+                        <div class="source">&mdash; <i></i>Che Guevara</div>
+                    </div>
+                
+                
+                
+                
+                
+                
+                
+                
+                
+            </div>
+        
+            {block:NewDayDate}
+                <div class="date">
+                    {ShortMonth} {DayOfMonthWithZero}
+                </div>
+            {/block:NewDayDate}
+        
+            <div class="post">
+                <a href="http://ilikewatermelon.tumblr.com/post/89676049"><img src="/themes/4/link.gif" 
+                class="permalink" alt="Permalink"/></a>
+
+                
+                
+                
+                
+                
+                    <div class="quote">
+                        <span class="quote">
+                            <big class="quote"><a href="http://ilikewatermelon.tumblr.com/post/89676049">&#147;</a></big> If God did not exist, it would be necessary to invent him.
+                        </span>
+                        <div class="source">&mdash; Voltaire, 1768</div>
+                    </div>
+                
+                
+                
+                
+                
+                
+                
+                
+                
+            </div>
+        
+            {block:NewDayDate}
+                <div class="date">
+                    {ShortMonth} {DayOfMonthWithZero}
+                </div>
+            {/block:NewDayDate}
+        
+            <div class="post">
+                <a href="http://ilikewatermelon.tumblr.com/post/89645590"><img src="/themes/4/link.gif" 
+                class="permalink" alt="Permalink"/></a>
+
+                
+                
+                
+                
+                
+                
+                
+                
+                
+                
+                
+                
+                
+                    <div class="video">
+                        <object width="500" height="336"><param name="movie" value="http://www.youtube.com/v/Cbk980jV7Ao&amp;rel=0&amp;egm=0&amp;showinfo=0&amp;fs=1"></param><param name="wmode" value="transparent"></param><param name="allowFullScreen" value="true"></param><embed src="http://www.youtube.com/v/Cbk980jV7Ao&amp;rel=0&amp;egm=0&amp;showinfo=0&amp;fs=1" type="application/x-shockwave-flash" width="500" height="336" allowFullScreen="true" wmode="transparent"></embed></object>
+                        
+                            <div class="caption">This video&#8230;is great.</div>
+                        
+                    </div>
+                
+            </div>
+        
+            {block:NewDayDate}
+                <div class="date">
+                    {ShortMonth} {DayOfMonthWithZero}
+                </div>
+            {/block:NewDayDate}
+        
+            <div class="post">
+                <a href="http://ilikewatermelon.tumblr.com/post/89634763"><img src="/themes/4/link.gif" 
+                class="permalink" alt="Permalink"/></a>
+
+                
+                
+                
+                    <div class="photo">
+                        <img src="http://10.media.tumblr.com/hq1cnYRytlha2wflDgNIHxwXo1_500.jpg" alt=""/>
+                        
+                            <div class="caption">Dinosaurs are awesome.</div>
+                        
+                    </div>
+                
+                
+                
+                
+                
+                
+                
+                
+                
+                
+                
+            </div>
+        
+            {block:NewDayDate}
+                <div class="date">
+                    {ShortMonth} {DayOfMonthWithZero}
+                </div>
+            {/block:NewDayDate}
+        
+            <div class="post">
+                <a href="http://ilikewatermelon.tumblr.com/post/88709799"><img src="/themes/4/link.gif" 
+                class="permalink" alt="Permalink"/></a>
+
+                
+                
+                
+                
+                
+                    <div class="quote">
+                        <span class="quote">
+                            <big class="quote"><a href="http://ilikewatermelon.tumblr.com/post/88709799">&#147;</a></big> Whose house is of glass, must not throw stones at another.
+                        </span>
+                        <div class="source">&mdash; George Herbert, 1651</div>
+                    </div>
+                
+                
+                
+                
+                
+                
+                
+                
+                
+            </div>
+        
+            {block:NewDayDate}
+                <div class="date">
+                    {ShortMonth} {DayOfMonthWithZero}
+                </div>
+            {/block:NewDayDate}
+        
+            <div class="post">
+                <a href="http://ilikewatermelon.tumblr.com/post/84337263"><img src="/themes/4/link.gif" 
+                class="permalink" alt="Permalink"/></a>
+
+                
+                
+                
+                
+                
+                    <div class="quote">
+                        <span class="quote">
+                            <big class="quote"><a href="http://ilikewatermelon.tumblr.com/post/84337263">&#147;</a></big> I&#8217;ll take my chances.
+                        </span>
+                        <div class="source">&mdash; Michael Westen (from the awesome season 2 finale of Burn Notice)</div>
+                    </div>
+                
+                
+                
+                
+                
+                
+                
+                
+                
+            </div>
+        
+            {block:NewDayDate}
+                <div class="date">
+                    {ShortMonth} {DayOfMonthWithZero}
+                </div>
+            {/block:NewDayDate}
+        
+            <div class="post">
+                <a href="http://ilikewatermelon.tumblr.com/post/83387878"><img src="/themes/4/link.gif" 
+                class="permalink" alt="Permalink"/></a>
+
+                
+                
+                
+                
+                
+                    <div class="quote">
+                        <span class="quote">
+                            <big class="quote"><a href="http://ilikewatermelon.tumblr.com/post/83387878">&#147;</a></big> Find someone who wants something for nothing then give them nothing for something.
+                        </span>
+                        <div class="source">&mdash; Anonymous con artist</div>
+                    </div>
+                
+                
+                
+                
+                
+                
+                
+                
+                
+            </div>
+        
+            {block:NewDayDate}
+                <div class="date">
+                    {ShortMonth} {DayOfMonthWithZero}
+                </div>
+            {/block:NewDayDate}
+        
+            <div class="post">
+                <a href="http://ilikewatermelon.tumblr.com/post/82218804"><img src="/themes/4/link.gif" 
+                class="permalink" alt="Permalink"/></a>
+
+                
+                
+                
+                
+                
+                    <div class="quote">
+                        <span class="quote">
+                            <big class="quote"><a href="http://ilikewatermelon.tumblr.com/post/82218804">&#147;</a></big> The No. 1 thing to look out for, Gormley tells me, is the car. &#8220;A BMW 3 series.&#8221; The cheapest luxury lease you could get. &#8220;It&#8217;s always a 3 series.
+                        </span>
+                        <div class="source">&mdash; Andrea Grimes in&#160;<a href="http://www.dallasobserver.com/2007-11-29/news/douchebags-in-the-mist/1">$30,000 Millionaires: Douchebags in the Mist</a></div>
+                    </div>
+                
+                
+                
+                
+                
+                
+                
+                
+                
+            </div>
+        
+            {block:NewDayDate}
+                <div class="date">
+                    {ShortMonth} {DayOfMonthWithZero}
+                </div>
+            {/block:NewDayDate}
+        
+            <div class="post">
+                <a href="http://ilikewatermelon.tumblr.com/post/81980195"><img src="/themes/4/link.gif" 
+                class="permalink" alt="Permalink"/></a>
+
+                
+                
+                
+                
+                
+                
+                
+                
+                
+                
+                
+                
+                
+                    <div class="video">
+                        <object width="500" height="336"><param name="movie" value="http://www.youtube.com/v/pgPHeYyjprE&amp;rel=0&amp;egm=0&amp;showinfo=0&amp;fs=1"></param><param name="wmode" value="transparent"></param><param name="allowFullScreen" value="true"></param><embed src="http://www.youtube.com/v/pgPHeYyjprE&amp;rel=0&amp;egm=0&amp;showinfo=0&amp;fs=1" type="application/x-shockwave-flash" width="500" height="336" allowFullScreen="true" wmode="transparent"></embed></object>
+                        
+                            <div class="caption">Weeee! I learned a new song today! <i>Horse With No Name</i> by America.</div>
+                        
+                    </div>
+                
+            </div>
+        
+            {block:NewDayDate}
+                <div class="date">
+                    {ShortMonth} {DayOfMonthWithZero}
+                </div>
+            {/block:NewDayDate}
+        
+            <div class="post">
+                <a href="http://ilikewatermelon.tumblr.com/post/81685368"><img src="/themes/4/link.gif" 
+                class="permalink" alt="Permalink"/></a>
+
+                
+                
+                
+                
+                
+                
+                
+                
+                
+                
+                
+                
+                
+                    <div class="video">
+                        <object width="500" height="336"><param name="movie" value="http://www.youtube.com/v/--D37_1mrT0&amp;rel=0&amp;egm=0&amp;showinfo=0&amp;fs=1"></param><param name="wmode" value="transparent"></param><param name="allowFullScreen" value="true"></param><embed src="http://www.youtube.com/v/--D37_1mrT0&amp;rel=0&amp;egm=0&amp;showinfo=0&amp;fs=1" type="application/x-shockwave-flash" width="500" height="336" allowFullScreen="true" wmode="transparent"></embed></object>
+                        
+                            <div class="caption">Coheed and Cambria - <i>The Suffering</i> (Melissa Foye cover)</div>
+                        
+                    </div>
+                
+            </div>
+        
+            {block:NewDayDate}
+                <div class="date">
+                    {ShortMonth} {DayOfMonthWithZero}
+                </div>
+            {/block:NewDayDate}
+        
+            <div class="post">
+                <a href="http://ilikewatermelon.tumblr.com/post/81679288"><img src="/themes/4/link.gif" 
+                class="permalink" alt="Permalink"/></a>
+
+                
+                
+                
+                
+                
+                
+                
+                
+                
+                
+                
+                
+                
+                    <div class="video">
+                        <object width="500" height="336"><param name="movie" value="http://www.youtube.com/v/WGOohBytKTU&amp;rel=0&amp;egm=0&amp;showinfo=0&amp;fs=1"></param><param name="wmode" value="transparent"></param><param name="allowFullScreen" value="true"></param><embed src="http://www.youtube.com/v/WGOohBytKTU&amp;rel=0&amp;egm=0&amp;showinfo=0&amp;fs=1" type="application/x-shockwave-flash" width="500" height="336" allowFullScreen="true" wmode="transparent"></embed></object>
+                        
+                            <div class="caption">Flight of the Conchords - <i>Business Time</i></div>
+                        
+                    </div>
+                
+            </div>
+        
+            {block:NewDayDate}
+                <div class="date">
+                    {ShortMonth} {DayOfMonthWithZero}
+                </div>
+            {/block:NewDayDate}
+        
+            <div class="post">
+                <a href="http://ilikewatermelon.tumblr.com/post/81342399"><img src="/themes/4/link.gif" 
+                class="permalink" alt="Permalink"/></a>
+
+                
+                
+                
+                
+                
+                    <div class="quote">
+                        <span class="quote">
+                            <big class="quote"><a href="http://ilikewatermelon.tumblr.com/post/81342399">&#147;</a></big> Before you embark on a journey of revenge, first dig two graves.
+                        </span>
+                        <div class="source">&mdash; Confucius</div>
+                    </div>
+                
+                
+                
+                
+                
+                
+                
+                
+                
+            </div>
+        
+            {block:NewDayDate}
+                <div class="date">
+                    {ShortMonth} {DayOfMonthWithZero}
+                </div>
+            {/block:NewDayDate}
+        
+            <div class="post">
+                <a href="http://ilikewatermelon.tumblr.com/post/81005371"><img src="/themes/4/link.gif" 
+                class="permalink" alt="Permalink"/></a>
+
+                
+                
+                
+                
+                
+                    <div class="quote">
+                        <span class="quote">
+                            <big class="quote"><a href="http://ilikewatermelon.tumblr.com/post/81005371">&#147;</a></big> If I am holding a cup of water and I ask you, &#8220;is the cup empty?&#8221; you will say &#8220;No, it is full of water.&#8221; But if I pour out the water and I ask you again, you may say, &#8220;yes, it is empty.&#8221; But, empty of what?&#8230;.My cup is empty of water, but it is not empty of air.
+                        </span>
+                        <div class="source">&mdash; Eugen Herrigel, <i>The Method of Zen</i></div>
+                    </div>
+                
+                
+                
+                
+                
+                
+                
+                
+                
+            </div>
+        
+            {block:NewDayDate}
+                <div class="date">
+                    {ShortMonth} {DayOfMonthWithZero}
+                </div>
+            {/block:NewDayDate}
+        
+            <div class="post">
+                <a href="http://ilikewatermelon.tumblr.com/post/81004901"><img src="/themes/4/link.gif" 
+                class="permalink" alt="Permalink"/></a>
+
+                
+                
+                
+                
+                
+                    <div class="quote">
+                        <span class="quote">
+                            <big class="quote"><a href="http://ilikewatermelon.tumblr.com/post/81004901">&#147;</a></big> Believe nothing, no matter where you read it, or who said it, no matter if I have said it, unless it agrees with your own reason and your own common sense.
+                        </span>
+                        <div class="source">&mdash; Buddha</div>
+                    </div>
+                
+                
+                
+                
+                
+                
+                
+                
+                
+            </div>
+        
+            {block:NewDayDate}
+                <div class="date">
+                    {ShortMonth} {DayOfMonthWithZero}
+                </div>
+            {/block:NewDayDate}
+        
+            <div class="post">
+                <a href="http://ilikewatermelon.tumblr.com/post/80770140"><img src="/themes/4/link.gif" 
+                class="permalink" alt="Permalink"/></a>
+
+                
+                    <div class="regular">
+                        <h2><a href="http://ilikewatermelon.tumblr.com/post/80770140">Ayn Rand, Atlas Shrugged</a></h2>
+                        &#8221;Did you really think that we want those laws to be observed?&#8221; said Dr. Ferris. &#8220;We want them broken. You&#8217;d better get it straight that it&#8217;s not a bunch of boy scouts you&#8217;re up against&#8212;then you&#8217;ll know that this is not the age for beautiful gestures. We&#8217;re after power and we mean it. You fellows were pikers, but we know the real trick, and you&#8217;d better get wise to it. There&#8217;s no way to rule innocent men. The only power any government has is the power to crack down on criminals. Well, when there aren&#8217;t enough criminals, one makes them. One declares so many things to be a crime that it becomes impossible for men to live without breaking laws. Who wants a nation of law-abiding citizens? What&#8217;s there in that for anyone? But just pass the kind of laws that can neither be observed nor enforced nor objectively interpreted&#8212;and you create a nation of law-breakers&#8212;and then you cash in on guilt. Now that&#8217;s the system, Mr. Rearden, that&#8217;s the game, and once you understand it, you&#8217;ll be much easier to deal with.
+                    </div>
+                
+                
+                
+                
+                
+                
+                
+                
+                
+                
+                
+                
+                
+            </div>
+        
+            {block:NewDayDate}
+                <div class="date">
+                    {ShortMonth} {DayOfMonthWithZero}
+                </div>
+            {/block:NewDayDate}
+        
+            <div class="post">
+                <a href="http://ilikewatermelon.tumblr.com/post/80767289"><img src="/themes/4/link.gif" 
+                class="permalink" alt="Permalink"/></a>
+
+                
+                    <div class="regular">
+                        <h2><a href="http://ilikewatermelon.tumblr.com/post/80767289">I *hate* season finales</a></h2>
+                        So my favourite show Psych had its season finale yesterday and it finished with a terribly, terribly annoying ending. Why would you say no to Jules! Now I have to wait &gt;6 months for the next episode :(.
+                    </div>
+                
+                
+                
+                
+                
+                
+                
+                
+                
+                
+                
+                
+                
+            </div>
+        
+            {block:NewDayDate}
+                <div class="date">
+                    {ShortMonth} {DayOfMonthWithZero}
+                </div>
+            {/block:NewDayDate}
+        
+            <div class="post">
+                <a href="http://ilikewatermelon.tumblr.com/post/62349839"><img src="/themes/4/link.gif" 
+                class="permalink" alt="Permalink"/></a>
+
+                
+                
+                
+                
+                
+                    <div class="quote">
+                        <span class="quote">
+                            <big class="quote"><a href="http://ilikewatermelon.tumblr.com/post/62349839">&#147;</a></big> It ain&#8217;t over &#8216;til its over.
+                        </span>
+                        <div class="source">&mdash; Yogi Berra</div>
+                    </div>
+                
+                
+                
+                
+                
+                
+                
+                
+                
+            </div>
+        
+            {block:NewDayDate}
+                <div class="date">
+                    {ShortMonth} {DayOfMonthWithZero}
+                </div>
+            {/block:NewDayDate}
+        
+            <div class="post">
+                <a href="http://ilikewatermelon.tumblr.com/post/58286878"><img src="/themes/4/link.gif" 
+                class="permalink" alt="Permalink"/></a>
+
+                
+                
+                
+                
+                
+                    <div class="quote">
+                        <span class="quote">
+                            <big class="quote"><a href="http://ilikewatermelon.tumblr.com/post/58286878">&#147;</a></big> I have a lot of trouble with things that don&#8217;t seem true to me; I&#8217;m very uncomfortable just accepting. There&#8217;s something in me that wants to pound the table and say, &#8216;That&#8217;s not true.&#8217;
+                        </span>
+                        <div class="source">&mdash; Michael Crichton</div>
+                    </div>
+                
+                
+                
+                
+                
+                
+                
+                
+                
+            </div>
+        
+            {block:NewDayDate}
+                <div class="date">
+                    {ShortMonth} {DayOfMonthWithZero}
+                </div>
+            {/block:NewDayDate}
+        
+            <div class="post">
+                <a href="http://ilikewatermelon.tumblr.com/post/51703536"><img src="/themes/4/link.gif" 
+                class="permalink" alt="Permalink"/></a>
+
+                
+                
+                
+                
+                
+                    <div class="quote">
+                        <span class="quote">
+                            <big class="quote"><a href="http://ilikewatermelon.tumblr.com/post/51703536">&#147;</a></big> HEY GUESS WHO&#8217;S NOT A GREEK GOD<br/>
+I&#8217;LL GIVE YOU A HINT<br/>
+YOU&#8217;RE TALKING TO HIM AND HE&#8217;S AWESOME<br/>
+ALSO HE&#8217;S ME
+                        </span>
+                        <div class="source">&mdash; God, from <a href="http://www.qwantz.com/archive/001311.html">Dinosaur Comics</a></div>
+                    </div>
+                
+                
+                
+                
+                
+                
+                
+                
+                
+            </div>
+        
+            {block:NewDayDate}
+                <div class="date">
+                    {ShortMonth} {DayOfMonthWithZero}
+                </div>
+            {/block:NewDayDate}
+        
+            <div class="post">
+                <a href="http://ilikewatermelon.tumblr.com/post/51682806"><img src="/themes/4/link.gif" 
+                class="permalink" alt="Permalink"/></a>
+
+                
+                
+                
+                
+                
+                    <div class="quote">
+                        <span class="quote">
+                            <big class="quote"><a href="http://ilikewatermelon.tumblr.com/post/51682806">&#147;</a></big> Remember when you were a kid and you&#8217;d hold your breath when you run past a grave yard? Leave that man alone.
+                        </span>
+                        <div class="source">&mdash; Captain Bowen, from [the otherwise terrible] Max Payne</div>
+                    </div>
+                
+                
+                
+                
+                
+                
+                
+                
+                
+            </div>
+        
+            {block:NewDayDate}
+                <div class="date">
+                    {ShortMonth} {DayOfMonthWithZero}
+                </div>
+            {/block:NewDayDate}
+        
+            <div class="post">
+                <a href="http://ilikewatermelon.tumblr.com/post/49976146"><img src="/themes/4/link.gif" 
+                class="permalink" alt="Permalink"/></a>
+
+                
+                    <div class="regular">
+                        <h2><a href="http://ilikewatermelon.tumblr.com/post/49976146">Psych.</a></h2>
+                        It is pretty much my favourite show on television.
+                    </div>
+                
+                
+                
+                
+                
+                
+                
+                
+                
+                
+                
+                
+                
+            </div>
+        
+            {block:NewDayDate}
+                <div class="date">
+                    {ShortMonth} {DayOfMonthWithZero}
+                </div>
+            {/block:NewDayDate}
+        
+            <div class="post">
+                <a href="http://ilikewatermelon.tumblr.com/post/46287187"><img src="/themes/4/link.gif" 
+                class="permalink" alt="Permalink"/></a>
+
+                
+                
+                
+                
+                
+                    <div class="quote">
+                        <span class="quote">
+                            <big class="quote"><a href="http://ilikewatermelon.tumblr.com/post/46287187">&#147;</a></big> Only so many blocks can fit in a box.
+                        </span>
+                        <div class="source">&mdash; Joel Spolsky</div>
+                    </div>
+                
+                
+                
+                
+                
+                
+                
+                
+                
+            </div>
+        
+            {block:NewDayDate}
+                <div class="date">
+                    {ShortMonth} {DayOfMonthWithZero}
+                </div>
+            {/block:NewDayDate}
+        
+            <div class="post">
+                <a href="http://ilikewatermelon.tumblr.com/post/46063990"><img src="/themes/4/link.gif" 
+                class="permalink" alt="Permalink"/></a>
+
+                
+                
+                
+                
+                
+                    <div class="quote">
+                        <span class="quote">
+                            <big class="quote"><a href="http://ilikewatermelon.tumblr.com/post/46063990">&#147;</a></big> We had to chase the teddy bears into their cuddle bunkers, and then tickle them out with machine hugs and fun throwers. They say the more soldiers you tickle, the easier it gets. Well, sir, it doesn&#8217;t.
+                        </span>
+                        <div class="source">&mdash; Grandpa Simpson</div>
+                    </div>
+                
+                
+                
+                
+                
+                
+                
+                
+                
+            </div>
+        
+            {block:NewDayDate}
+                <div class="date">
+                    {ShortMonth} {DayOfMonthWithZero}
+                </div>
+            {/block:NewDayDate}
+        
+            <div class="post">
+                <a href="http://ilikewatermelon.tumblr.com/post/45935533"><img src="/themes/4/link.gif" 
+                class="permalink" alt="Permalink"/></a>
+
+                
+                
+                
+                
+                
+                    <div class="quote">
+                        <span class="quote">
+                            <big class="quote"><a href="http://ilikewatermelon.tumblr.com/post/45935533">&#147;</a></big> It&#8217;s not a real party until the volume is measured in horsepower.
+                        </span>
+                        <div class="source">&mdash; Me</div>
+                    </div>
+                
+                
+                
+                
+                
+                
+                
+                
+                
+            </div>
+        
+            {block:NewDayDate}
+                <div class="date">
+                    {ShortMonth} {DayOfMonthWithZero}
+                </div>
+            {/block:NewDayDate}
+        
+            <div class="post">
+                <a href="http://ilikewatermelon.tumblr.com/post/44196788"><img src="/themes/4/link.gif" 
+                class="permalink" alt="Permalink"/></a>
+
+                
+                
+                
+                
+                
+                
+                
+                    <div class="link">
+                        &#187; <a href="http://www.priceusa.com.au/index.html" class="link" target="_blank">PriceUSA</a>
+                        
+                            <div class="description">An awesome business that allows Australians to order US-only packages. Neat!</div>
+                        
+                    </div>
+                
+                
+                
+                
+                
+                
+                
+            </div>
+        
+            {block:NewDayDate}
+                <div class="date">
+                    {ShortMonth} {DayOfMonthWithZero}
+                </div>
+            {/block:NewDayDate}
+        
+            <div class="post">
+                <a href="http://ilikewatermelon.tumblr.com/post/43915215"><img src="/themes/4/link.gif" 
+                class="permalink" alt="Permalink"/></a>
+
+                
+                
+                
+                
+                
+                    <div class="quote">
+                        <span class="quote">
+                            <big class="quote"><a href="http://ilikewatermelon.tumblr.com/post/43915215">&#147;</a></big> As soon as I make sure everyone else is out.
+                        </span>
+                        <div class="source">&mdash; Rick Rescorla, on when he himself would evacuate from the crumbling WTC. He and three other men that followed to help were never seen again.</div>
+                    </div>
+                
+                
+                
+                
+                
+                
+                
+                
+                
+            </div>
+        
+            {block:NewDayDate}
+                <div class="date">
+                    {ShortMonth} {DayOfMonthWithZero}
+                </div>
+            {/block:NewDayDate}
+        
+            <div class="post">
+                <a href="http://ilikewatermelon.tumblr.com/post/43797088"><img src="/themes/4/link.gif" 
+                class="permalink" alt="Permalink"/></a>
+
+                
+                
+                
+                
+                
+                    <div class="quote">
+                        <span class="quote">
+                            <big class="quote"><a href="http://ilikewatermelon.tumblr.com/post/43797088">&#147;</a></big> Mr. Laurio, never trust a beautiful woman, especially one who&#8217;s interested in you.
+                        </span>
+                        <div class="source">&mdash; Magneto</div>
+                    </div>
+                
+                
+                
+                
+                
+                
+                
+                
+                
+            </div>
+        
+            {block:NewDayDate}
+                <div class="date">
+                    {ShortMonth} {DayOfMonthWithZero}
+                </div>
+            {/block:NewDayDate}
+        
+            <div class="post">
+                <a href="http://ilikewatermelon.tumblr.com/post/43679500"><img src="/themes/4/link.gif" 
+                class="permalink" alt="Permalink"/></a>
+
+                
+                    <div class="regular">
+                        <h2><a href="http://ilikewatermelon.tumblr.com/post/43679500">The last strech</a></h2>
+                        <p>Finally back into the daily grind with my last semester. For the next 4 months, I have no life outside school.</p>
+<p>After that, it&#8217;s anyone&#8217;s guess!</p>
+                    </div>
+                
+                
+                
+                
+                
+                
+                
+                
+                
+                
+                
+                
+                
+            </div>
+        
+            {block:NewDayDate}
+                <div class="date">
+                    {ShortMonth} {DayOfMonthWithZero}
+                </div>
+            {/block:NewDayDate}
+        
+            <div class="post">
+                <a href="http://ilikewatermelon.tumblr.com/post/43650943"><img src="/themes/4/link.gif" 
+                class="permalink" alt="Permalink"/></a>
+
+                
+                
+                
+                
+                
+                    <div class="quote">
+                        <span class="quote">
+                            <big class="quote"><a href="http://ilikewatermelon.tumblr.com/post/43650943">&#147;</a></big> I mean, the metaphor I&#8217;ve used is &#8230; somebody&#8217;s going to push my family off a cliff pretty soon, and I won&#8217;t be there to catch them. And that breaks my heart. But I have some time to sew some nets to cushion the fall. So, I can curl up in a ball and cry, or I can get to work on the nets.
+                        </span>
+                        <div class="source">&mdash; Dr. Randy Pausch</div>
+                    </div>
+                
+                
+                
+                
+                
+                
+                
+                
+                
+            </div>
+        
+            {block:NewDayDate}
+                <div class="date">
+                    {ShortMonth} {DayOfMonthWithZero}
+                </div>
+            {/block:NewDayDate}
+        
+            <div class="post">
+                <a href="http://ilikewatermelon.tumblr.com/post/43586134"><img src="/themes/4/link.gif" 
+                class="permalink" alt="Permalink"/></a>
+
+                
+                
+                
+                
+                
+                    <div class="quote">
+                        <span class="quote">
+                            <big class="quote"><a href="http://ilikewatermelon.tumblr.com/post/43586134">&#147;</a></big> If you want to make a friend, solve a problem for them. No problem to solve? Create one.
+                        </span>
+                        <div class="source">&mdash; Michael Western (from the TV series Burn Notice)</div>
+                    </div>
+                
+                
+                
+                
+                
+                
+                
+                
+                
+            </div>
+        
+            {block:NewDayDate}
+                <div class="date">
+                    {ShortMonth} {DayOfMonthWithZero}
+                </div>
+            {/block:NewDayDate}
+        
+            <div class="post">
+                <a href="http://ilikewatermelon.tumblr.com/post/42790259"><img src="/themes/4/link.gif" 
+                class="permalink" alt="Permalink"/></a>
+
+                
+                
+                
+                
+                
+                    <div class="quote">
+                        <span class="quote">
+                            <big class="quote"><a href="http://ilikewatermelon.tumblr.com/post/42790259">&#147;</a></big> The state must declare the child to be the most precious treasure of the people. As long as the government is perceived as working for the benefit of the children, the people will happily endure almost any curtailment of liberty and almost any deprivation.
+                        </span>
+                        <div class="source">&mdash; Rabbi Daniel Lapin</div>
+                    </div>
+                
+                
+                
+                
+                
+                
+                
+                
+                
+            </div>
+        
+            {block:NewDayDate}
+                <div class="date">
+                    {ShortMonth} {DayOfMonthWithZero}
+                </div>
+            {/block:NewDayDate}
+        
+            <div class="post">
+                <a href="http://ilikewatermelon.tumblr.com/post/39506413"><img src="/themes/4/link.gif" 
+                class="permalink" alt="Permalink"/></a>
+
+                
+                
+                
+                
+                
+                    <div class="quote">
+                        <span class="quote">
+                            <big class="quote"><a href="http://ilikewatermelon.tumblr.com/post/39506413">&#147;</a></big> They didn&#8217;t understand what they were doing. I&#8217;m afraid that will be on the tombstone of the human race. I hope it&#8217;s not. We might get lucky.
+                        </span>
+                        <div class="source">&mdash; Jack Foreman (in Michael Crichton&#8217;s novel, Prey)</div>
+                    </div>
+                
+                
+                
+                
+                
+                
+                
+                
+                
+            </div>
+        
+            {block:NewDayDate}
+                <div class="date">
+                    {ShortMonth} {DayOfMonthWithZero}
+                </div>
+            {/block:NewDayDate}
+        
+            <div class="post">
+                <a href="http://ilikewatermelon.tumblr.com/post/39335312"><img src="/themes/4/link.gif" 
+                class="permalink" alt="Permalink"/></a>
+
+                
+                
+                
+                
+                
+                    <div class="quote">
+                        <span class="quote">
+                            <big class="quote"><a href="http://ilikewatermelon.tumblr.com/post/39335312">&#147;</a></big> The first step to having free will is to admit you have none.
+                        </span>
+                        <div class="source">&mdash; Unknown Bhuddist Monk</div>
+                    </div>
+                
+                
+                
+                
+                
+                
+                
+                
+                
+            </div>
+        
+            {block:NewDayDate}
+                <div class="date">
+                    {ShortMonth} {DayOfMonthWithZero}
+                </div>
+            {/block:NewDayDate}
+        
+            <div class="post">
+                <a href="http://ilikewatermelon.tumblr.com/post/37700149"><img src="/themes/4/link.gif" 
+                class="permalink" alt="Permalink"/></a>
+
+                
+                
+                
+                
+                
+                    <div class="quote">
+                        <span class="quote">
+                            <big class="quote"><a href="http://ilikewatermelon.tumblr.com/post/37700149">&#147;</a></big> Never, never, never, never give up.
+                        </span>
+                        <div class="source">&mdash; Winston Churchill</div>
+                    </div>
+                
+                
+                
+                
+                
+                
+                
+                
+                
+            </div>
+        
+            {block:NewDayDate}
+                <div class="date">
+                    {ShortMonth} {DayOfMonthWithZero}
+                </div>
+            {/block:NewDayDate}
+        
+            <div class="post">
+                <a href="http://ilikewatermelon.tumblr.com/post/33984216"><img src="/themes/4/link.gif" 
+                class="permalink" alt="Permalink"/></a>
+
+                
+                
+                
+                
+                
+                
+                
+                    <div class="link">
+                        &#187; <a href="http://www.penjuinlabs.com/blog/" class="link" target="_blank">penjuinlabs</a>
+                        
+                            <div class="description">My blog!</div>
+                        
+                    </div>
+                
+                
+                
+                
+                
+                
+                
+            </div>
+        
+            {block:NewDayDate}
+                <div class="date">
+                    {ShortMonth} {DayOfMonthWithZero}
+                </div>
+            {/block:NewDayDate}
+        
+            <div class="post">
+                <a href="http://ilikewatermelon.tumblr.com/post/33095494"><img src="/themes/4/link.gif" 
+                class="permalink" alt="Permalink"/></a>
+
+                
+                
+                
+                
+                
+                    <div class="quote">
+                        <span class="quote">
+                            <big class="quote"><a href="http://ilikewatermelon.tumblr.com/post/33095494">&#147;</a></big> Ninety percent of everything is crap.
+                        </span>
+                        <div class="source">&mdash; Sturgeon&#8217;s Law</div>
+                    </div>
+                
+                
+                
+                
+                
+                
+                
+                
+                
+            </div>
+        
+            {block:NewDayDate}
+                <div class="date">
+                    {ShortMonth} {DayOfMonthWithZero}
+                </div>
+            {/block:NewDayDate}
+        
+            <div class="post">
+                <a href="http://ilikewatermelon.tumblr.com/post/33094325"><img src="/themes/4/link.gif" 
+                class="permalink" alt="Permalink"/></a>
+
+                
+                
+                
+                
+                
+                    <div class="quote">
+                        <span class="quote">
+                            <big class="quote"><a href="http://ilikewatermelon.tumblr.com/post/33094325">&#147;</a></big> If you don&#8217;t try your best, you might as well not try at all.
+                        </span>
+                        <div class="source">&mdash; Unknown</div>
+                    </div>
+                
+                
+                
+                
+                
+                
+                
+                
+                
+            </div>
+        
+        
+        <div id="navigation">
+            {block:PreviousPage}
+                <a href="{PreviousPage}">previous</a> &nbsp;&nbsp;
+            {/block:PreviousPage}
+        
+            {block:NextPage}
+                <a href="{NextPage}">next &#187;</a>
+            {/block:NextPage}
+        </div>
+    </div>
+    <div id="footer">
+        subscribe via <a href="/rss">rss</a> &nbsp;/&nbsp;
+        powered by <a href="http://www.tumblr.com/" target="_blank">tumblr</a>
+    </div>
+<iframe src="http://www.tumblr.com/dashboard/iframe?src=http%3A%2F%2Filikewatermelon.tumblr.com%2F" 
+border="0" scrolling="no" width="278" height="25" allowTransparency="true"
+frameborder="0" style="position:absolute; z-index:1337; top:0px; right:0px; border:0px;
+background-color:transparent; overflow:hidden;" id="tumblr_controls"></iframe></body>
+
+</html>

@@ -1,8 +1,19 @@
-import urllib
-
-urlopener = urllib.URLopener()
-opener = urlopener.open('http://ilikewatermelon.tumblr.com/api/read/json?num=50')
+import urllib2, yaml, re
+from src.post_classes import *
+from src import json
+opener = urllib2.urlopen('http://ilikewatermelon.tumblr.com/api/read/json?num=50')
 source = opener.read()
 opener.close()
 
+unicodes = re.findall(r'\\u[a-fA-F0-9]{4}', source)
+for uni in unicodes: 
+    source = source.replace(uni, "&#%s;" % (str(int(uni[2:], 16))) )
+
+
 source = source.replace('var tumblr_api_read = ', '')
+
+data = json.read(source)
+
+temp = open('data/data.yml', 'w')
+temp.write(yaml.dump(data, default_flow_style=False).replace('\_', ''))
+temp.close()
