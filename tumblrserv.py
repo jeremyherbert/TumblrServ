@@ -43,21 +43,8 @@ for name, colour in meta_colours:
 
 posts = []
 for post in data['posts']:
-    if post['type'] == 'regular':
-        posts.append(TextPost( data['posts'].index(post), post, replace_all_except_block('Regular', posts_markup)))
-    elif post['type'] == 'photo':
-        posts.append(PhotoPost( data['posts'].index(post), post, replace_all_except_block('Photo', posts_markup)))
-    elif post['type'] == 'quote':
-        posts.append(QuotePost( data['posts'].index(post), post, replace_all_except_block('Quote', posts_markup)))
-    elif post['type'] == 'link':
-        posts.append(LinkPost( data['posts'].index(post), post, replace_all_except_block('Link', posts_markup)))
-    elif post['type'] == 'conversation':
-        posts.append(ChatPost( data['posts'].index(post), post, replace_all_except_block('Conversation', posts_markup)))
-    elif post['type'] == 'video':
-        posts.append(VideoPost( data['posts'].index(post), post, replace_all_except_block('Video', posts_markup)))
-    elif post['type'] == 'audio':
-        posts.append(AudioPost( data['posts'].index(post), post, replace_all_except_block('Audio', posts_markup)))
-        
+    exec "posts.append(%sPost(data['posts'].index(post), post, replace_all_except_block('%s', posts_markup)))" % (post.get('type', '').capitalize(), post.get('type', '').capitalize())
+
 post_html = ''
 for post in posts:
     post_html += post.generate_html()

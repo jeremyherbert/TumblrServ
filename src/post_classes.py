@@ -169,7 +169,7 @@ class Post(object):
     def __str__(self):
         return "<%sPost %s: %s>" % (self._type.capitalize(), self.post_index, str(self._attr))
         
-class TextPost(Post):
+class RegularPost(Post):
     """
     A Post that contains only text.
     """
@@ -246,7 +246,7 @@ class QuotePost(Post):
     def update(self):
         self._replace_tags = [
             ('{Quote}', self._attr.get('quote-text', '')),
-            ('{Length}', 'medium'), # this is cheap, but there is no data on what length corresponds to a given classification
+            ('{Length}', 'medium'), # this is pretty cheap, but there is no data on what length corresponds to a given classification
             ]
             
         self._conditional_render_blocks = [
@@ -273,7 +273,7 @@ class LinkPost(Post):
             ('Description', 'Description', self._attr.get('link-description', '')),
             ]
 
-class ChatPost(Post):
+class ConversationPost(Post):
     """
     A Post that contains dialog between two or more people.
     """
