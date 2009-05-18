@@ -7,78 +7,7 @@
 # text, photo, quote, link, chat, audio, video
 import sys, re, pdb
 
-def within_constraints(constraints):
-    """
-    Check if a list of constraints has been met. If not, print the error message.
-    
-    within_constraints(list[(bool, str)]) -> bool
-    """
-    return_val = True
-    for outcome, message in constraints:
-        if not outcome: # if a particular test failed
-            print "An error occurred: " + str(message) # print it
-            return_val = False # we do this so that all of the errors show up, not just one
-    return return_val
-    
-def has_keys(dict_to_check, keys):
-    """
-    Check if a given dictionary has all of the keys.
-    
-    has_keys(dict, list[str]) -> bool
-    """
-    return reduce(lambda x,y: x and dict_to_check.has_key(y), keys, True) 
-
-def replace_several(replacements, instring):
-    """
-    Runs a replace on more than one pair of strings at a time.
-    
-    replace_several(list[(str,str)], str) -> str
-    """
-    outstring = instring
-    for to_replace, replacement in replacements:
-        # This can occasionally cause a Unicode error. Hopefully I fixed that problem but it is 
-        # still here to make sure nothing breaks (untrusted data is untrusted data after all)
-        try:
-            outstring = outstring.replace(to_replace, replacement) 
-        except: 
-            print "There was a UnicodeError in %s." % str(self)
-    return outstring
-    
-def render_conditional_block(block_name, tag, contents, instring):
-    """
-    If data is available, renders a conditional block. If the data is not available, it deletes the block. For example:
-    
-    if the passed data is 'hello':
-    {block:Caption}<p>{Caption}</p>{/block:Caption} -> <p>hello</p>
-    however if the passed data is '':
-    {block:Caption}<p>{Caption}</p>{/block:Caption} -> 
-    
-    render_conditional_block(str, str, str, str) -> str
-    """
-    if contents:
-           return replace_several([
-               ('{block:%s}' % block_name, ''), # remove the block tags
-               ('{/block:%s}' % block_name, ''), 
-               ('{%s}' % tag, contents), # and insert the data we want
-               ], instring)
-    else:
-           # if we get here, there is no data provided, so destroy the tags and everything in between
-           return re.sub(re.compile(r'{block:%s}.+{/block:%s}' % (block_name, block_name), re.DOTALL), '', instring) 
-           
-def nice_number_formatting(number):
-    """
-    Puts commas into a number at every third spot to make the number more readable (this was surprisingly hard to do efficiently).
-    
-    nice_number_formatting(int) -> str
-    """
-    liststr = list(str(number)) 
-    liststr.reverse() # turn the number into a list and reverse it
-    
-    # as the list gets one element larger each time we add a comma, we put one in every (n+n/3) spot
-    for n in range(0,len(liststr),3): liststr.insert(n+n/3, ',') 
-    liststr.reverse()
-    return ''.join(liststr[:-1]) # drop off the comma at the end
-           
+from support import *    
 
 class Post(object):
     """

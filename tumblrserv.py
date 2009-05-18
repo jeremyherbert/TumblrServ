@@ -22,6 +22,9 @@ def replace_all_except_block(block_name, markup):
         ('{/block:%s}' % (block_name), ''),
         ], output)
     return output
+    
+arguments = sys.argv
+
 
 if os.path.exists('data/data.yml'):
     temp_handle = open('data/data.yml', 'r')

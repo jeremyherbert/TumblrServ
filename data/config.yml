@@ -1,0 +1,8 @@
+publishing_info:
+    url: http://ilikewatermelon.tumblr.com
+    username: ilikewatermelon
+    password: cakecake
+    
+defaults:
+    theme_name: theme 
+    data_name: data  # the extension will be automatically appended
