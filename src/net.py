@@ -2,6 +2,8 @@
 
 import urllib2, re, json, yaml
 
+from support import *
+
 def pull_data(source, should_return_data=False):
     if is_url(source): # if the user provided a url
         if source.find('/api/read/json') > -1: # and if they provided a url to a direct json source

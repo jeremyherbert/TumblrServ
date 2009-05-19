@@ -4,8 +4,45 @@ import cherrypy
 from support import *
 from server import *
 from post_classes import *
+from htmlgen import *
 
 post_types = ['Regular', 'Photo', 'Quote', 'Link', 'Conversation', 'Video', 'Audio', 'Conversation']
+
+class Search(object):
+    """
+    Handles the data searching. This uses a very slow algorithm, but it is not supposed to be used in production anyway.
+    """
+    def __init__(self, config, data):
+        """
+        Initialises the class.
+        
+        Search.__init__(self, config, data) -> None
+        """
+        self.config = config
+        self.data = data
+    
+    def search(self, query=None):
+        """
+        Searches for posts containing a query.
+        
+        Search.search(self, str)
+        """
+        if not query:
+            return ''
+            
+        self.markup = get_markup('themes/%s.thtml' % config['defaults']['theme_name'])
+        posts = generate_posts(data, extract_post_markup(self.markup))
+        filtered_posts = []
+        
+        for post in posts:
+            for key in post._attr.keys():
+                if post._attr[key].find(query) > -1:
+                    filtered_posts.append(post)
+                    continue
+                    
+        html = generate_html(self.config, self.markup, None, filtered_posts)
+        
+    search.exposed = True
 
 class TumblrServ(object):
     """
@@ -20,6 +57,8 @@ class TumblrServ(object):
         self.config = config
         self.markup = get_markup('themes/%s.thtml' % config['defaults']['theme_name'])
         self.data = get_data("data/%s.yml" % config['defaults']['data_name'])
+        
+        TumblrServ.search = Search(self.config, self.data)
         
     def reload(self):
         """
@@ -37,26 +76,15 @@ class TumblrServ(object):
         """
         self.reload()
         
-        html = self.markup
-        html = insert_meta_colours(html)
-        posts_markup = extract_post_markup(html)
+        html = generate_html(self.config, self.markup, self.data)
         
-        self.posts = []
-        for post in self.data['posts']:
-            exec "self.posts.append(%sPost(self.data['posts'].index(post), post, replace_all_except_block('%s', posts_markup)))" % (post.get('type', '').capitalize(), post.get('type', '').capitalize())
-        
-        post_html = ''
-        for post in self.posts:
-            post_html += post.generate_html()
-            
-        html = re.sub(re.compile(r'{block:Posts}.*{/block:Posts}',re.DOTALL) , post_html, html )
-        
-        html = replace_several([
-            ('{Title}', self.data['tumblelog'].get('title', ''))
-            ], html)
-        html = render_conditional_block('Description', 'Description', self.data['tumblelog'].get('description', ''), html)
+        # we are not in search mode, so delete all the search blocks
+        html = render_conditional_block('SearchPage', 'SearchQuery', '', html)
+        html = html.replace('{SearchQuery}', '')
         
         return html
         
     # set index as the default route
     index.exposed = True 
+
+

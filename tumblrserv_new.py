@@ -41,7 +41,6 @@ if contains(arguments, '--config'):
         config_path = next_arg(arguments, '--config')
 
 config = get_config(config_path)
-print str(config)
 
 # now we check if there are any data processing flags
 if contains(arguments, '--pull-data'):
