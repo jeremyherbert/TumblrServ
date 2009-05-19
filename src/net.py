@@ -1,5 +1,7 @@
 # Contains functions related to data transfer to and from tumblr
 
+import urllib2, re, json, yaml
+
 def pull_data(source, should_return_data=False):
     if is_url(source): # if the user provided a url
         if source.find('/api/read/json') > -1: # and if they provided a url to a direct json source
