@@ -1,5 +1,7 @@
 # support.py
-import re, sys, os, yaml, pdb
+import re, sys, os, yaml
+
+post_types = ['Regular', 'Photo', 'Quote', 'Link', 'Conversation', 'Video', 'Audio', 'Conversation']
 
 def within_constraints(constraints):
     """
@@ -169,3 +171,44 @@ def get_config(path):
     set_if_nexists(config['defaults'], 'data_name', 'data')
     
     return config
+    
+def get_data(path):
+    """
+    Opens the data from a flat yaml file.
+    
+    get_data(str) -> dict
+    """
+    if not os.path.exists(path): err_exit("The data file at %s does not exist." % path)
+    
+    data_handle = open(path, 'U')
+    try:
+        data = yaml.load(data_handle.read())
+    except Exception, detail:
+        err_exit("The data is not valid yaml. The error given was:\n%s" % str(detail))
+        
+    data_handle.close()
+    
+    return data
+    
+def get_markup(path):
+    """
+    Opens the data from a flat yaml file.
+    
+    get_data(str) -> dict
+    """
+    if not os.path.exists(path): err_exit("The theme file at %s does not exist." % path)
+    
+    markup_handle = open(path, 'U')
+    markup = markup_handle.read()
+    markup_handle.close()
+    
+    return markup
+    
+def extract_post_markup(markup):
+    """
+    Returns the markup associated with posts.
+    
+    extract_post_markup(str) -> str
+    """
+    
+    return re.search(r'{block:Posts}(?P<markup>.+){/block:Posts}', markup, re.DOTALL).group('markup')

@@ -9,6 +9,8 @@ import sys, re, pdb
 
 from support import *    
 
+post_types = ['Regular', 'Photo', 'Quote', 'Link', 'Conversation', 'Video', 'Audio', 'Conversation']
+
 class Post(object):
     """
     This is the main class for storing data. It implements a number of methods that are intended to be overridden by a 

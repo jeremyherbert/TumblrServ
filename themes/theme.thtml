@@ -3,7 +3,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
 <head>
     <!-- DEFAULT COLORS -->
-    <meta name="color:Background" content="#222"/>
+    <meta name="color:Background" content="#555"/><!-- 5a8b10 -->
     <meta name="color:Content Background" content="#fff"/>
     <meta name="color:Title" content="#666"/>
     <meta name="color:Description" content="#777"/>
@@ -25,6 +25,7 @@
     <!-- END DEFAULT COLORS -->
     
 	<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+	<!--<meta http-equiv=refresh content="5">-->
 	<link rel="icon" href="{Favicon}"/>
 	<link rel="alternate" type="application/rss+xml" title="RSS" href="{RSS}"/>
     <title>{Title}{block:PostSummary} - {PostSummary}{/block:PostSummary}</title>

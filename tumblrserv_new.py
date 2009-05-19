@@ -57,3 +57,6 @@ if contains(arguments, '--theme-name'):
     if not os.path.exists("theme/" + next_arg(arguments, '--theme')):
         err_exit("The theme file %s does not exist in the theme directory." % next_arg(arguments, '--theme'))
     config['defaults']['theme_name'] = next_arg(arguments, '--theme')
+    
+# start the server up
+cherrypy.quickstart(TumblrServ(config))
