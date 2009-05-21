@@ -39,23 +39,35 @@ def generate_html(config, markup, data, posts=None):
     html = replace_several([
         ('{Title}', data['tumblelog'].get('title', ''))
         ], html)
-    html = render_conditional_block('Description', 'Description', data['tumblelog'].get('description', ''), html)
-    html = render_conditional_block('PostSummary', 'PostSummary', data['tumblelog'].get('post_summary', ''), html)
+    html = render_conditional_block('Description', [('Description', data['tumblelog'].get('description', ''))], html)
+    html = render_conditional_block('PostSummary', [('PostSummary', data['tumblelog'].get('post_summary', ''))], html)
     
-    print config
     # check if we should replace images
-    if not config['defaults']['display_images']:
+    if not config['optimisations']['display_images']:
         images = re.findall(r'<img src=.+>', html)
         print str(images)
         for image in images:
             # try to extract width, height
             if image.find('width') > -1 and image.find('height') > -1:
-                height, width = re.search(r'height=(.+)&.+width=(.+)', image).group()
+                height = re.search(r'height=(.+)&width=(.+)', image).group()
             else:
                 # just draw a 50 by 50 box
                 height = '50'
                 width = '50'
-        print "replacing"
-        html = html.replace(image, '<div style="background-color: #000" width=%s height=%s ></div>' % (width, height))
+            html = html.replace(image, '<div style="background-color: #000" width=%s height=%s >&nbsp;</div>' % (width, height))
     
+    if not config['optimisations']['display_embeds']:
+        embeds = re.findall(r'<embed.+>', html)
+        print str(embeds)
+        for embed in embeds:
+            # try to extract width, height
+            if embed.find('width') > -1 and embed.find('height') > -1:
+                height= re.search(r'height=(.+)', embed).group()
+                width = re.search(r'width=(.+)', embed).group()
+            else:
+                # just draw a 50 by 50 box
+                height = '50'
+                width = '50'
+            html = html.replace(embed, '<div style="background-color: #000" width=%s height=%s >&nbsp;</div>' % (width, height))
+    #pdb.set_trace()
     return html

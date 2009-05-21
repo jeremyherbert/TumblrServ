@@ -310,7 +310,7 @@
 <body>
     <div id="container">
         <div id="nav">
-            <a href="/archive">Archive</a>
+            <a href="/archive">Archives</a>
             <span class="dim">/</span>
             <a href="{RSS}">RSS</a>
 						<div id="search">

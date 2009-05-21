@@ -1,5 +1,5 @@
 # support.py
-import re, sys, os, yaml
+import re, sys, os, yaml, pdb
 
 post_types = ['Regular', 'Photo', 'Quote', 'Link', 'Conversation', 'Video', 'Audio', 'Conversation']
 
@@ -40,7 +40,7 @@ def replace_several(replacements, instring):
             print "There was a UnicodeError in %s." % str(self)
     return outstring
     
-def render_conditional_block(block_name, tag, contents, instring):
+def render_conditional_block(block_name, tag_contents_list, instring):
     """
     If data is available, renders a conditional block. If the data is not available, it deletes the block. For example:
     
@@ -49,14 +49,19 @@ def render_conditional_block(block_name, tag, contents, instring):
     however if the passed data is '':
     {block:Caption}<p>{Caption}</p>{/block:Caption} -> 
     
-    render_conditional_block(str, str, str, str) -> str
+    render_conditional_block(str, list, str) -> str
     """
-    if contents:
-           return replace_several([
+    #pdb.set_trace()
+    if tag_contents_list:
+        outstring = replace_several([
                ('{block:%s}' % block_name, ''), # remove the block tags
                ('{/block:%s}' % block_name, ''), 
-               ('{%s}' % tag, contents), # and insert the data we want
                ], instring)
+        for tag, contents in tag_contents_list:
+            outstring = outstring.replace('{%s}' % tag, contents)
+            
+        return outstring
+
     else:
            # if we get here, there is no data provided, so destroy the tags and everything in between
            return re.sub(re.compile(r'{block:%s}.+{/block:%s}' % (block_name, block_name), re.DOTALL), '', instring) 
@@ -102,6 +107,19 @@ def contains(list_to_check, item):
         if element == item:
             n+=1
     return n
+    
+def render_dates(markup, attr, newdate=None):
+    """
+    Renders all of the date tags.
+    
+    render_dates(str, obj) -> str
+    """
+    html = markup
+    if newdate:
+        pass
+    else:
+        pass
+    return html
     
 def err_exit(error_message,code=1):
     """

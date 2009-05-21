@@ -79,7 +79,7 @@ class TumblrServ(object):
         html = generate_html(self.config, self.markup, self.data)
         
         # we are not in search mode, so delete all the search blocks
-        html = render_conditional_block('SearchPage', 'SearchQuery', '', html)
+        html = render_conditional_block('SearchPage', [], html)
         html = html.replace('{SearchQuery}', '')
         
         return html

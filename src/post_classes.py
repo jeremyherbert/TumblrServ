@@ -34,6 +34,7 @@ class Post(object):
         self._type = ''
         self._conditional_render_blocks = []
         self._replace_tags = []
+        self.new_date = False # This controls date generation
     
     def validate(self):
         """
@@ -85,7 +86,7 @@ class Post(object):
         
         # and replace the blocks too
         for block_name, tag, attribute in self._conditional_render_blocks:
-            output = render_conditional_block(block_name, tag, attribute, output)
+            output = render_conditional_block(block_name, [(tag, attribute)], output)
         
         return output 
     
@@ -248,7 +249,7 @@ class ConversationPost(Post):
         current_id = 0
         for line in self._attr['conversation']:
             # render the label block
-            line_html = render_conditional_block('Label', 'Label', line.get('label', ''), line_rule)
+            line_html = render_conditional_block('Label', [('Label', line.get('label', ''))], line_rule)
             
             if used_usernames.find(line.get('name', '')) > -1: # set a unique id
                 current_id += 1

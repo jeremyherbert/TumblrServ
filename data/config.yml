@@ -6,5 +6,7 @@ publishing_info:
 defaults:
     theme_name: theme 
     data_name: data  # the extension will be automatically appended
+    
+optimisations:
     display_embeds: yes
     display_images: yes
