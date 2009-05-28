@@ -23,7 +23,7 @@
 publishing_info:
     url: http://example.tumblr.com
     username: example@example.com
-    password: example
+    password: example_password
 
 defaults:
     theme_name: theme 

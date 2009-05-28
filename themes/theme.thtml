@@ -106,7 +106,7 @@
     		width: 648px;
     		margin: 0px auto;
     		background: url(/themes/9/c_bg.gif) center center repeat-y;
-    		padding: 0 1px 1px 1px;
+    		padding: 0 1px 1px 1px
     	}
 	
     	#container a{

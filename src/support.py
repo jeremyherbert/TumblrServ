@@ -198,8 +198,7 @@ def insert_meta_colours(markup):
     
     insert_meta_colours(str) -> str
     """
-    meta_colours = re.findall(r'name=\"color:(.+)\"\
- content=\"#([0-9A-Fa-f]{3,6})\"', markup)
+    meta_colours = re.findall(r'name=\"color:(.+)\" content=\"#([0-9A-Fa-f]{3,6})\"', markup)
     for name, colour in meta_colours:
         markup = markup.replace("{color:%s}" % name, "#" + colour)
         
@@ -447,17 +446,17 @@ def replace_with_static_urls(markup):
     for filename in os.listdir('static'):
         
         try:
-            urls += re.findall(r'src=\"(?P<url>.+%s)\"' % filename, output)
+            urls += re.findall(r'src=\"(?P<url>.+\/%s)\"' % filename, output)
         except:
             pass
             
         try:
-            urls += re.findall(r'url\(\'(?P<url>.+%s)\'\)' % filename, output)
+            urls += re.findall(r'url\(\'(?P<url>.+\/%s)\'\)' % filename, output)
         except:
             pass
             
         try:
-            urls += re.findall(r'url\((?P<url>.+%s)\)' % filename, output)
+            urls += re.findall(r'url\((?P<url>.+\/%s)\)' % filename, output)
         except:
             pass
             
