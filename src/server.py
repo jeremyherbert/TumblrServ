@@ -2,6 +2,8 @@
 ##    engine and compatible webserver.
 ##      This is server.py which contains the main server controller class.
 ##
+##    Version: 0.2 final
+##
 ##    Copyright (C) 2009 Jeremy Herbert
 ##    Contact mailto:jeremy@jeremyherbert.net
 ##

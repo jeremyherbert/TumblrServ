@@ -3,6 +3,8 @@
 ##      This is net.py which contains functions related to data transfer to 
 ##      and from tumblr.
 ##
+##    Version: 0.2 final
+##
 ##    Copyright (C) 2009 Jeremy Herbert
 ##    Contact mailto:jeremy@jeremyherbert.net
 ##

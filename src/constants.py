@@ -2,6 +2,8 @@
 ##    engine and compatible webserver.
 ##      This is constants.py that contains constants for the software.
 ##
+##    Version: 0.2 final
+##
 ##    Copyright (C) 2009 Jeremy Herbert
 ##    Contact mailto:jeremy@jeremyherbert.net
 ##

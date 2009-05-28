@@ -3,6 +3,8 @@
 ##      This is htmlgen.py which contains functions to abstract the process of
 ##      parsing markup.
 ##
+##    Version: 0.2 final
+##
 ##    Copyright (C) 2009 Jeremy Herbert
 ##    Contact mailto:jeremy@jeremyherbert.net
 ##

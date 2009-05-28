@@ -3,6 +3,8 @@
 ##    tumblrserv.py implements a Tumblr (http://www.tumblr.com) markup parsing
 ##    engine and compatible webserver.
 ##
+##    Version: 0.2 final
+##
 ##    Copyright (C) 2009 Jeremy Herbert
 ##    Contact mailto:jeremy@jeremyherbert.net
 ##
