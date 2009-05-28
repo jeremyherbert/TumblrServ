@@ -1,48 +1,12 @@
 # contains the main server class
 
-import cherrypy
+import cherrypy, pdb
 from support import *
 from server import *
 from post_classes import *
 from htmlgen import *
 
 post_types = ['Regular', 'Photo', 'Quote', 'Link', 'Conversation', 'Video', 'Audio', 'Conversation']
-
-class Search(object):
-    """
-    Handles the data searching. This uses a very slow algorithm, but it is not supposed to be used in production anyway.
-    """
-    def __init__(self, config, data):
-        """
-        Initialises the class.
-        
-        Search.__init__(self, config, data) -> None
-        """
-        self.config = config
-        self.data = data
-    
-    def search(self, query=None):
-        """
-        Searches for posts containing a query.
-        
-        Search.search(self, str)
-        """
-        if not query:
-            return ''
-            
-        self.markup = get_markup('themes/%s.thtml' % config['defaults']['theme_name'])
-        posts = generate_posts(data, extract_post_markup(self.markup))
-        filtered_posts = []
-        
-        for post in posts:
-            for key in post._attr.keys():
-                if post._attr[key].find(query) > -1:
-                    filtered_posts.append(post)
-                    continue
-                    
-        html = generate_html(self.config, self.markup, None, filtered_posts)
-        
-    search.exposed = True
 
 class TumblrServ(object):
     """
@@ -58,8 +22,6 @@ class TumblrServ(object):
         self.markup = get_markup('themes/%s.thtml' % config['defaults']['theme_name'])
         self.data = get_data("data/%s.yml" % config['defaults']['data_name'])
         
-        TumblrServ.search = Search(self.config, self.data)
-        
     def reload(self):
         """
         Reloads the markup from disk.
@@ -68,7 +30,7 @@ class TumblrServ(object):
         """
         self.markup = get_markup('themes/%s.thtml' % self.config['defaults']['theme_name'])
     
-    def index(self, search=None, page=None):
+    def index(self, page='1', per_page='10', q=None):
         """
         The index page for the controller. This should not be called outside of CherryPy.
         
@@ -79,11 +41,39 @@ class TumblrServ(object):
         if self.config['optimisations'].get('do_nothing') == True:
             return self.markup
         
-        html = generate_html(self.config, self.markup, self.data)
+        # generate html with 10 per page
+        html = generate_html(self.config, self.markup, self.data, int(page), int(per_page)) 
         
         # we are not in search mode, so delete all the search blocks
         html = delete_block('SearchPage', html)
-        html = html.replace('{SearchQuery}', '')
+        html = replace_several([
+            ('{SearchQuery}', ''),
+            ('action="/search"', 'action="/"'),
+        ], html)
+        
+        html = replace_with_static_urls(html)
+        
+        total_pages = len(self.data['posts'])/int(per_page)
+        
+        # if we are on the first page
+        if int(page) < 2:
+            html = render_conditional_block('PreviousPage', [('PreviousPage', '')], html)
+        else:
+            html = render_conditional_block('PreviousPage', [('PreviousPage', '/?page=%s&per_page=%s' % ( str(int(page)-1), per_page ) )], html)
+        
+        # if we are on the last page
+        if int(page)+1 > total_pages:
+            html = render_conditional_block('NextPage', [('NextPage', '')], html)
+        else:
+            html = render_conditional_block('NextPage', [('NextPage', '/?page=%s&per_page=%s' % ( str(int(page)+1), per_page ) )], html)
+        
+        html = replace_several([
+            ('{CurrentPage}', page),
+            ('{TotalPages}', str(total_pages))
+        ], html)
+        
+        html = html.replace('{RSS}', self.config['defaults']['rss_url'])
+        html = html.replace('{MeaningOfLife}', '42') # a nice easter egg for testing!
         
         return html
         

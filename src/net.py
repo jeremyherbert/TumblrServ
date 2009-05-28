@@ -1,6 +1,6 @@
 # Contains functions related to data transfer to and from tumblr
 
-import urllib, urllib2, cookielib, re, json, yaml, ClientForm, pdb
+import urllib, urllib2, cookielib, re, json, yaml, ClientForm
 
 from support import *
 
@@ -93,21 +93,29 @@ def publish_theme(url, username, password, html):
     try:
         configuration_form = forms[2]
     except IndexError:
-        err_exit('The form data could not be extracted; it is likely that your internet connection is malfunctioning. Please try again later.')
+        err_exit('The form data could not be extracted; it is likely that your internet connection is malfunctioning. Please check your credentials and try again later.')
         
     configuration_form['edit_tumblelog[custom_theme]'] = html
     
+    # now we insert the default colours
+    n = 0
+    colours = extract_colours(html)
+    while True:
+        try:
+            configuration_form['params[%i]' % n] = colours[n]
+        except:
+            break
+        n += 1
+    
+    # get the request object
     post_request_data = configuration_form.click()
     
-    #pdb.set_trace()
     print "Posting new theme data...",
     try:
         resp2 = tumblr_opener.open(post_request_data)
     except urllib2.HTTPError, response2:
         err_exit('An error occured when attempting to post the form data. Please check your login credentials.')
     print "done"
-    
-    #resp2 = tumblr_opener.open('http://www.tumblr.com/customize', upload_data)
 
     err_exit("Theme uploaded successfully.", 0)
         

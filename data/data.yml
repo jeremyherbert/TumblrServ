@@ -1,5 +1,35 @@
 posts:
 - bookmarklet: 0
+  date: Wed, 27 May 2009 22:04:09
+  date-gmt: 2009-05-27 12:04:09 GMT
+  feed-item: ''
+  format: html
+  from-feed-id: 0
+  id: 113736526
+  link-description: Words cannot do this justice.
+  link-text: Extreme Ironing
+  link-url: http://en.wikipedia.org/wiki/Extreme_ironing
+  mobile: 0
+  type: link
+  unix-timestamp: 1243425849
+  url: http://ilikewatermelon.tumblr.com/post/113736526
+  url-with-slug: http://ilikewatermelon.tumblr.com/post/113736526/extreme-ironing
+- bookmarklet: 0
+  date: Tue, 26 May 2009 22:52:07
+  date-gmt: 2009-05-26 12:52:07 GMT
+  feed-item: ''
+  format: html
+  from-feed-id: 0
+  id: 113224879
+  mobile: 0
+  quote-source: Hofstadter&#8217;s Law
+  quote-text: It always takes longer than you expect, even when you take into account
+    Hofstadter&#8217;s Law.
+  type: quote
+  unix-timestamp: 1243342327
+  url: http://ilikewatermelon.tumblr.com/post/113224879
+  url-with-slug: http://ilikewatermelon.tumblr.com/post/113224879/it-always-takes-longer-than-you-expect-even-when
+- bookmarklet: 0
   date: Mon, 18 May 2009 21:57:24
   date-gmt: 2009-05-18 11:57:24 GMT
   feed-item: ''
@@ -17,6 +47,7 @@ posts:
   type: quote
   unix-timestamp: 1242647844
   url: http://ilikewatermelon.tumblr.com/post/109454056
+  url-with-slug: http://ilikewatermelon.tumblr.com/post/109454056/i-can-tell-you-the-license-plate-numbers-of-all
 - bookmarklet: 0
   date: Sat, 16 May 2009 19:07:53
   date-gmt: 2009-05-16 09:07:53 GMT
@@ -31,6 +62,7 @@ posts:
   type: quote
   unix-timestamp: 1242464873
   url: http://ilikewatermelon.tumblr.com/post/108552063
+  url-with-slug: http://ilikewatermelon.tumblr.com/post/108552063/its-better-to-stay-silent-and-look-a-fool-rather
 - bookmarklet: 0
   date: Sat, 09 May 2009 23:15:21
   date-gmt: 2009-05-09 13:15:21 GMT
@@ -42,6 +74,7 @@ posts:
   type: video
   unix-timestamp: 1241874921
   url: http://ilikewatermelon.tumblr.com/post/105431879
+  url-with-slug: http://ilikewatermelon.tumblr.com/post/105431879/ingrid-michaelson-and-jason-mraz-you-and-i-what
   video-caption: '<p>Ingrid Michaelson and Jason Mraz - <i>You and I</i></p>
 
     <p>What ever happened to fun, lighthearted music like this?</p>'
@@ -67,6 +100,7 @@ posts:
   type: link
   unix-timestamp: 1241785812
   url: http://ilikewatermelon.tumblr.com/post/105003573
+  url-with-slug: http://ilikewatermelon.tumblr.com/post/105003573/increased-food-intake-alone-explains-the-increase-in
 - bookmarklet: 0
   date: Tue, 05 May 2009 19:36:09
   date-gmt: 2009-05-05 09:36:09 GMT
@@ -85,6 +119,7 @@ posts:
   type: photo
   unix-timestamp: 1241516169
   url: http://ilikewatermelon.tumblr.com/post/103686985
+  url-with-slug: http://ilikewatermelon.tumblr.com/post/103686985/srsly
 - bookmarklet: 0
   date: Mon, 04 May 2009 21:20:01
   date-gmt: 2009-05-04 11:20:01 GMT
@@ -98,6 +133,7 @@ posts:
   type: quote
   unix-timestamp: 1241436001
   url: http://ilikewatermelon.tumblr.com/post/103287702
+  url-with-slug: http://ilikewatermelon.tumblr.com/post/103287702/you-just-ask-them
 - bookmarklet: 0
   date: Mon, 04 May 2009 17:59:47
   date-gmt: 2009-05-04 07:59:47 GMT
@@ -116,6 +152,7 @@ posts:
   type: photo
   unix-timestamp: 1241423987
   url: http://ilikewatermelon.tumblr.com/post/103252430
+  url-with-slug: http://ilikewatermelon.tumblr.com/post/103252430/my-new-pet
 - bookmarklet: 0
   date: Mon, 04 May 2009 17:57:04
   date-gmt: 2009-05-04 07:57:04 GMT
@@ -129,6 +166,7 @@ posts:
   type: quote
   unix-timestamp: 1241423824
   url: http://ilikewatermelon.tumblr.com/post/103251892
+  url-with-slug: http://ilikewatermelon.tumblr.com/post/103251892/and-ye-shall-know-the-truth-and-the-truth-shall
 - bookmarklet: 0
   date: Sun, 03 May 2009 18:45:00
   date-gmt: 2009-05-03 08:45:00 GMT
@@ -147,6 +185,7 @@ posts:
   type: regular
   unix-timestamp: 1241340300
   url: http://ilikewatermelon.tumblr.com/post/102894242
+  url-with-slug: http://ilikewatermelon.tumblr.com/post/102894242/interesting-fact-of-the-day
 - bookmarklet: 0
   date: Thu, 30 Apr 2009 15:36:59
   date-gmt: 2009-04-30 05:36:59 GMT
@@ -158,6 +197,7 @@ posts:
   type: video
   unix-timestamp: 1241069819
   url: http://ilikewatermelon.tumblr.com/post/101756927
+  url-with-slug: http://ilikewatermelon.tumblr.com/post/101756927/frontier-psychiatrist-by-the-avalanches-i
   video-caption: <i>Frontier Psychiatrist</i> by The Avalanches. I seriously can&#8217;t
     get enough of these guys today.
   video-player: <object width="400" height="336"><param name="movie" value="http://www.youtube.com/v/U8BWBn26bX0&amp;rel=0&amp;egm=0&amp;showinfo=0&amp;fs=1"></param><param
@@ -177,6 +217,7 @@ posts:
   type: video
   unix-timestamp: 1241069761
   url: http://ilikewatermelon.tumblr.com/post/101756672
+  url-with-slug: http://ilikewatermelon.tumblr.com/post/101756672/since-i-left-you-by-the-avalanches-these-guys-are
   video-caption: <i>Since I left you</i> by The Avalanches. These guys are seriously
     awesome.
   video-player: <object width="400" height="336"><param name="movie" value="http://www.youtube.com/v/RrdlmHZHIJY&amp;rel=0&amp;egm=0&amp;showinfo=0&amp;fs=1"></param><param
@@ -199,6 +240,7 @@ posts:
   type: regular
   unix-timestamp: 1240720239
   url: http://ilikewatermelon.tumblr.com/post/100203467
+  url-with-slug: http://ilikewatermelon.tumblr.com/post/100203467/i-just-stacked-my-bike-and-had-to-get-my-wrist
 - bookmarklet: 0
   date: Sat, 18 Apr 2009 21:47:13
   date-gmt: 2009-04-18 11:47:13 GMT
@@ -217,6 +259,7 @@ posts:
   type: photo
   unix-timestamp: 1240055233
   url: http://ilikewatermelon.tumblr.com/post/97481266
+  url-with-slug: http://ilikewatermelon.tumblr.com/post/97481266/via-supersonicelectronic
 - bookmarklet: 0
   date: Sat, 11 Apr 2009 00:17:00
   date-gmt: 2009-04-10 14:17:00 GMT
@@ -232,6 +275,7 @@ posts:
   type: quote
   unix-timestamp: 1239373020
   url: http://ilikewatermelon.tumblr.com/post/94850943
+  url-with-slug: http://ilikewatermelon.tumblr.com/post/94850943/we-say-that-in-the-beginning-that-there-was
 - bookmarklet: 0
   date: Fri, 10 Apr 2009 23:57:54
   date-gmt: 2009-04-10 13:57:54 GMT
@@ -246,6 +290,7 @@ posts:
   type: regular
   unix-timestamp: 1239371874
   url: http://ilikewatermelon.tumblr.com/post/94846638
+  url-with-slug: http://ilikewatermelon.tumblr.com/post/94846638/there-arent-enough-true-spy-stories
 - bookmarklet: 0
   date: Sat, 28 Mar 2009 16:42:19
   date-gmt: 2009-03-28 06:42:19 GMT
@@ -261,6 +306,7 @@ posts:
   type: quote
   unix-timestamp: 1238222539
   url: http://ilikewatermelon.tumblr.com/post/90581787
+  url-with-slug: http://ilikewatermelon.tumblr.com/post/90581787/all-this-will-not-be-finished-in-the-first-100
 - bookmarklet: 0
   date: Sat, 28 Mar 2009 00:32:08
   date-gmt: 2009-03-27 14:32:08 GMT
@@ -274,6 +320,7 @@ posts:
   type: quote
   unix-timestamp: 1238164328
   url: http://ilikewatermelon.tumblr.com/post/90351312
+  url-with-slug: http://ilikewatermelon.tumblr.com/post/90351312/chivalry-is-dead-and-women-killed-it
 - bookmarklet: 0
   date: Thu, 26 Mar 2009 22:40:35
   date-gmt: 2009-03-26 12:40:35 GMT
@@ -287,6 +334,7 @@ posts:
   type: quote
   unix-timestamp: 1238071235
   url: http://ilikewatermelon.tumblr.com/post/90005282
+  url-with-slug: http://ilikewatermelon.tumblr.com/post/90005282/shoot-coward-youre-only-going-to-kill-a-man
 - bookmarklet: 0
   date: Wed, 25 Mar 2009 22:48:12
   date-gmt: 2009-03-25 12:48:12 GMT
@@ -300,6 +348,7 @@ posts:
   type: quote
   unix-timestamp: 1237985292
   url: http://ilikewatermelon.tumblr.com/post/89676049
+  url-with-slug: http://ilikewatermelon.tumblr.com/post/89676049/if-god-did-not-exist-it-would-be-necessary-to
 - bookmarklet: 0
   date: Wed, 25 Mar 2009 19:23:25
   date-gmt: 2009-03-25 09:23:25 GMT
@@ -311,6 +360,7 @@ posts:
   type: video
   unix-timestamp: 1237973005
   url: http://ilikewatermelon.tumblr.com/post/89645590
+  url-with-slug: http://ilikewatermelon.tumblr.com/post/89645590/this-video-is-great
   video-caption: This video&#8230;is great.
   video-player: <object width="400" height="336"><param name="movie" value="http://www.youtube.com/v/Cbk980jV7Ao&amp;rel=0&amp;egm=0&amp;showinfo=0&amp;fs=1"></param><param
     name="wmode" value="transparent"></param><param name="allowFullScreen" value="true"></param><embed
@@ -336,6 +386,7 @@ posts:
   type: photo
   unix-timestamp: 1237968485
   url: http://ilikewatermelon.tumblr.com/post/89634763
+  url-with-slug: http://ilikewatermelon.tumblr.com/post/89634763/dinosaurs-are-awesome
 - bookmarklet: 0
   date: Sun, 22 Mar 2009 20:38:11
   date-gmt: 2009-03-22 10:38:11 GMT
@@ -349,6 +400,7 @@ posts:
   type: quote
   unix-timestamp: 1237718291
   url: http://ilikewatermelon.tumblr.com/post/88709799
+  url-with-slug: http://ilikewatermelon.tumblr.com/post/88709799/whose-house-is-of-glass-must-not-throw-stones-at
 - bookmarklet: 0
   date: Sat, 07 Mar 2009 21:58:00
   date-gmt: 2009-03-07 11:58:00 GMT
@@ -362,6 +414,7 @@ posts:
   type: quote
   unix-timestamp: 1236427080
   url: http://ilikewatermelon.tumblr.com/post/84337263
+  url-with-slug: http://ilikewatermelon.tumblr.com/post/84337263/ill-take-my-chances
 - bookmarklet: 0
   date: Wed, 04 Mar 2009 16:56:59
   date-gmt: 2009-03-04 06:56:59 GMT
@@ -376,6 +429,7 @@ posts:
   type: quote
   unix-timestamp: 1236149819
   url: http://ilikewatermelon.tumblr.com/post/83387878
+  url-with-slug: http://ilikewatermelon.tumblr.com/post/83387878/find-someone-who-wants-something-for-nothing-then
 - bookmarklet: 0
   date: Sat, 28 Feb 2009 17:38:00
   date-gmt: 2009-02-28 07:38:00 GMT
@@ -392,6 +446,7 @@ posts:
   type: quote
   unix-timestamp: 1235806680
   url: http://ilikewatermelon.tumblr.com/post/82218804
+  url-with-slug: http://ilikewatermelon.tumblr.com/post/82218804/the-no-1-thing-to-look-out-for-gormley-tells-me
 - bookmarklet: 0
   date: Fri, 27 Feb 2009 22:20:26
   date-gmt: 2009-02-27 12:20:26 GMT
@@ -403,6 +458,7 @@ posts:
   type: video
   unix-timestamp: 1235737226
   url: http://ilikewatermelon.tumblr.com/post/81980195
+  url-with-slug: http://ilikewatermelon.tumblr.com/post/81980195/weeee-i-learned-a-new-song-today-horse-with-no
   video-caption: Weeee! I learned a new song today! <i>Horse With No Name</i> by America.
   video-player: <object width="400" height="336"><param name="movie" value="http://www.youtube.com/v/pgPHeYyjprE&amp;rel=0&amp;egm=0&amp;showinfo=0&amp;fs=1"></param><param
     name="wmode" value="transparent"></param><param name="allowFullScreen" value="true"></param><embed
@@ -421,6 +477,7 @@ posts:
   type: video
   unix-timestamp: 1235653200
   url: http://ilikewatermelon.tumblr.com/post/81685368
+  url-with-slug: http://ilikewatermelon.tumblr.com/post/81685368/coheed-and-cambria-the-suffering-melissa-foye
   video-caption: Coheed and Cambria - <i>The Suffering</i> (Melissa Foye cover)
   video-player: <object width="400" height="336"><param name="movie" value="http://www.youtube.com/v/--D37_1mrT0&amp;rel=0&amp;egm=0&amp;showinfo=0&amp;fs=1"></param><param
     name="wmode" value="transparent"></param><param name="allowFullScreen" value="true"></param><embed
@@ -439,6 +496,7 @@ posts:
   type: video
   unix-timestamp: 1235650924
   url: http://ilikewatermelon.tumblr.com/post/81679288
+  url-with-slug: http://ilikewatermelon.tumblr.com/post/81679288/flight-of-the-conchords-business-time
   video-caption: Flight of the Conchords - <i>Business Time</i>
   video-player: <object width="400" height="336"><param name="movie" value="http://www.youtube.com/v/WGOohBytKTU&amp;rel=0&amp;egm=0&amp;showinfo=0&amp;fs=1"></param><param
     name="wmode" value="transparent"></param><param name="allowFullScreen" value="true"></param><embed
@@ -459,6 +517,7 @@ posts:
   type: quote
   unix-timestamp: 1235552542
   url: http://ilikewatermelon.tumblr.com/post/81342399
+  url-with-slug: http://ilikewatermelon.tumblr.com/post/81342399/before-you-embark-on-a-journey-of-revenge-first
 - bookmarklet: 1
   date: Tue, 24 Feb 2009 17:09:00
   date-gmt: 2009-02-24 07:09:00 GMT
@@ -475,6 +534,7 @@ posts:
   type: quote
   unix-timestamp: 1235459340
   url: http://ilikewatermelon.tumblr.com/post/81005371
+  url-with-slug: http://ilikewatermelon.tumblr.com/post/81005371/if-i-am-holding-a-cup-of-water-and-i-ask-you-is
 - bookmarklet: 1
   date: Tue, 24 Feb 2009 17:06:03
   date-gmt: 2009-02-24 07:06:03 GMT
@@ -489,6 +549,7 @@ posts:
   type: quote
   unix-timestamp: 1235459163
   url: http://ilikewatermelon.tumblr.com/post/81004901
+  url-with-slug: http://ilikewatermelon.tumblr.com/post/81004901/believe-nothing-no-matter-where-you-read-it-or
 - bookmarklet: 0
   date: Tue, 24 Feb 2009 00:43:43
   date-gmt: 2009-02-23 14:43:43 GMT
@@ -515,6 +576,7 @@ posts:
   type: regular
   unix-timestamp: 1235400223
   url: http://ilikewatermelon.tumblr.com/post/80770140
+  url-with-slug: http://ilikewatermelon.tumblr.com/post/80770140/ayn-rand-atlas-shrugged
 - bookmarklet: 0
   date: Tue, 24 Feb 2009 00:31:00
   date-gmt: 2009-02-23 14:31:00 GMT
@@ -530,6 +592,7 @@ posts:
   type: regular
   unix-timestamp: 1235399460
   url: http://ilikewatermelon.tumblr.com/post/80767289
+  url-with-slug: http://ilikewatermelon.tumblr.com/post/80767289/i-hate-season-finales
 - bookmarklet: 0
   date: Mon, 01 Dec 2008 13:22:59
   date-gmt: 2008-12-01 03:22:59 GMT
@@ -543,6 +606,7 @@ posts:
   type: quote
   unix-timestamp: 1228101779
   url: http://ilikewatermelon.tumblr.com/post/62349839
+  url-with-slug: http://ilikewatermelon.tumblr.com/post/62349839/it-aint-over-til-its-over
 - bookmarklet: 0
   date: Thu, 06 Nov 2008 20:45:57
   date-gmt: 2008-11-06 10:45:57 GMT
@@ -558,6 +622,7 @@ posts:
   type: quote
   unix-timestamp: 1225968357
   url: http://ilikewatermelon.tumblr.com/post/58286878
+  url-with-slug: http://ilikewatermelon.tumblr.com/post/58286878/i-have-a-lot-of-trouble-with-things-that-dont
 - bookmarklet: 0
   date: Thu, 25 Sep 2008 23:05:32
   date-gmt: 2008-09-25 13:05:32 GMT
@@ -578,6 +643,7 @@ posts:
   type: quote
   unix-timestamp: 1222347932
   url: http://ilikewatermelon.tumblr.com/post/51703536
+  url-with-slug: http://ilikewatermelon.tumblr.com/post/51703536/hey-guess-whos-not-a-greek-god-ill-give-you-a
 - bookmarklet: 0
   date: Thu, 25 Sep 2008 19:35:00
   date-gmt: 2008-09-25 09:35:00 GMT
@@ -592,6 +658,7 @@ posts:
   type: quote
   unix-timestamp: 1222335300
   url: http://ilikewatermelon.tumblr.com/post/51682806
+  url-with-slug: http://ilikewatermelon.tumblr.com/post/51682806/remember-when-you-were-a-kid-and-youd-hold-your
 - bookmarklet: 0
   date: Sat, 13 Sep 2008 20:13:39
   date-gmt: 2008-09-13 10:13:39 GMT
@@ -605,6 +672,7 @@ posts:
   type: regular
   unix-timestamp: 1221300819
   url: http://ilikewatermelon.tumblr.com/post/49976146
+  url-with-slug: http://ilikewatermelon.tumblr.com/post/49976146/psych
 - bookmarklet: 0
   date: Sun, 17 Aug 2008 22:24:41
   date-gmt: 2008-08-17 12:24:41 GMT
@@ -618,6 +686,7 @@ posts:
   type: quote
   unix-timestamp: 1218975881
   url: http://ilikewatermelon.tumblr.com/post/46287187
+  url-with-slug: http://ilikewatermelon.tumblr.com/post/46287187/only-so-many-blocks-can-fit-in-a-box
 - bookmarklet: 0
   date: Fri, 15 Aug 2008 22:03:42
   date-gmt: 2008-08-15 12:03:42 GMT
@@ -633,6 +702,7 @@ posts:
   type: quote
   unix-timestamp: 1218801822
   url: http://ilikewatermelon.tumblr.com/post/46063990
+  url-with-slug: http://ilikewatermelon.tumblr.com/post/46063990/we-had-to-chase-the-teddy-bears-into-their-cuddle
 - bookmarklet: 0
   date: Thu, 14 Aug 2008 22:13:00
   date-gmt: 2008-08-14 12:13:00 GMT
@@ -646,6 +716,7 @@ posts:
   type: quote
   unix-timestamp: 1218715980
   url: http://ilikewatermelon.tumblr.com/post/45935533
+  url-with-slug: http://ilikewatermelon.tumblr.com/post/45935533/its-not-a-real-party-until-the-volume-is-measured
 - bookmarklet: 0
   date: Thu, 31 Jul 2008 21:40:58
   date-gmt: 2008-07-31 11:40:58 GMT
@@ -661,6 +732,7 @@ posts:
   type: link
   unix-timestamp: 1217504458
   url: http://ilikewatermelon.tumblr.com/post/44196788
+  url-with-slug: http://ilikewatermelon.tumblr.com/post/44196788/priceusa
 - bookmarklet: 0
   date: Tue, 29 Jul 2008 19:32:59
   date-gmt: 2008-07-29 09:32:59 GMT
@@ -675,6 +747,7 @@ posts:
   type: quote
   unix-timestamp: 1217323979
   url: http://ilikewatermelon.tumblr.com/post/43915215
+  url-with-slug: http://ilikewatermelon.tumblr.com/post/43915215/as-soon-as-i-make-sure-everyone-else-is-out
 - bookmarklet: 0
   date: Mon, 28 Jul 2008 21:20:39
   date-gmt: 2008-07-28 11:20:39 GMT
@@ -689,6 +762,7 @@ posts:
   type: quote
   unix-timestamp: 1217244039
   url: http://ilikewatermelon.tumblr.com/post/43797088
+  url-with-slug: http://ilikewatermelon.tumblr.com/post/43797088/mr-laurio-never-trust-a-beautiful-woman
 - bookmarklet: 0
   date: Sun, 27 Jul 2008 17:15:00
   date-gmt: 2008-07-27 07:15:00 GMT
@@ -705,6 +779,7 @@ posts:
   type: regular
   unix-timestamp: 1217142900
   url: http://ilikewatermelon.tumblr.com/post/43679500
+  url-with-slug: http://ilikewatermelon.tumblr.com/post/43679500/the-last-strech
 - bookmarklet: 0
   date: Sun, 27 Jul 2008 09:28:19
   date-gmt: 2008-07-26 23:28:19 GMT
@@ -721,6 +796,7 @@ posts:
   type: quote
   unix-timestamp: 1217114899
   url: http://ilikewatermelon.tumblr.com/post/43650943
+  url-with-slug: http://ilikewatermelon.tumblr.com/post/43650943/i-mean-the-metaphor-ive-used-is-somebodys
 - bookmarklet: 0
   date: Sat, 26 Jul 2008 16:01:40
   date-gmt: 2008-07-26 06:01:40 GMT
@@ -735,6 +811,7 @@ posts:
   type: quote
   unix-timestamp: 1217052100
   url: http://ilikewatermelon.tumblr.com/post/43586134
+  url-with-slug: http://ilikewatermelon.tumblr.com/post/43586134/if-you-want-to-make-a-friend-solve-a-problem-for
 - bookmarklet: 0
   date: Sat, 19 Jul 2008 16:05:23
   date-gmt: 2008-07-19 06:05:23 GMT
@@ -751,36 +828,9 @@ posts:
   type: quote
   unix-timestamp: 1216447523
   url: http://ilikewatermelon.tumblr.com/post/42790259
-- bookmarklet: 0
-  date: Mon, 23 Jun 2008 22:56:27
-  date-gmt: 2008-06-23 12:56:27 GMT
-  feed-item: ''
-  format: html
-  from-feed-id: 0
-  id: 39506413
-  mobile: 0
-  quote-source: Jack Foreman (in Michael Crichton&#8217;s novel, Prey)
-  quote-text: They didn&#8217;t understand what they were doing. I&#8217;m afraid
-    that will be on the tombstone of the human race. I hope it&#8217;s not. We might
-    get lucky.
-  type: quote
-  unix-timestamp: 1214225787
-  url: http://ilikewatermelon.tumblr.com/post/39506413
-- bookmarklet: 0
-  date: Sun, 22 Jun 2008 11:23:00
-  date-gmt: 2008-06-22 01:23:00 GMT
-  feed-item: ''
-  format: html
-  from-feed-id: 0
-  id: 39335312
-  mobile: 0
-  quote-source: Unknown Bhuddist Monk
-  quote-text: The first step to having free will is to admit you have none.
-  type: quote
-  unix-timestamp: 1214097780
-  url: http://ilikewatermelon.tumblr.com/post/39335312
+  url-with-slug: http://ilikewatermelon.tumblr.com/post/42790259/the-state-must-declare-the-child-to-be-the-most
 posts-start: 0
-posts-total: 79
+posts-total: 81
 posts-type: false
 tumblelog:
   cname: false

@@ -47,21 +47,21 @@ if contains(arguments, '--pull-data'):
     # call pull_data with the argument after the flag
     pull_data( next_arg(arguments, '--pull-data') )
 
+if contains(arguments, '--theme'):
+    if not os.path.exists("themes/" + next_arg(arguments, '--theme') + '.thtml'):
+        err_exit("The theme file %s.thtml does not exist in the themes directory." % next_arg(arguments, '--theme'))
+    config['defaults']['theme_name'] = next_arg(arguments, '--theme')
+
 if contains(arguments, '--publish'):
     if not has_keys(config['publishing_info'], ( 'url', 'username', 'password' )): 
         err_exit('The configuration file is missing some critical publishing information. Please make sure you have specified your url, username and password.')
     publish_theme(config['publishing_info']['url'], config['publishing_info']['username'], config['publishing_info']['password'], get_markup('themes/%s.thtml' % config['defaults']['theme_name']))
     
-if contains(arguments, '--theme-name'):
-    if not os.path.exists("theme/" + next_arg(arguments, '--theme')):
-        err_exit("The theme file %s does not exist in the theme directory." % next_arg(arguments, '--theme'))
-    config['defaults']['theme_name'] = next_arg(arguments, '--theme')
+if contains(arguments, '--do-nothing'):
+    config['optimisations']['do_nothing'] = True
     
 # start the server up
-try:
-    cherrypy.quickstart(TumblrServ(config))
-except:
-    type, value, tb = sys.exc_info()
-    traceback.print_exc()
-    pdb.post_mortem(tb)
+cherrypy.config.update('data/cherrypy.conf')
+cherrypy.quickstart(TumblrServ(config), '/')
+
     

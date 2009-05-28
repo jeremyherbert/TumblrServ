@@ -145,7 +145,10 @@ def next_arg(arg_list, item, n=1):
     
     next_arg(list, obj, int)
     """
-    return arg_list[ arg_list.index(item) + n ]
+    try:
+        return arg_list[ arg_list.index(item) + n ]
+    except:
+        err_exit('You did not provide enough arguments!')
     
 def is_url(string_to_check):
     """
@@ -243,8 +246,10 @@ def extract_post_markup(markup):
     
     extract_post_markup(str) -> str
     """
-    
-    return re.search(r'{block:Posts}(?P<markup>.+){/block:Posts}', markup, re.DOTALL).group('markup')
+    try:
+        return re.search(r'{block:Posts}(?P<markup>.+){/block:Posts}', markup, re.DOTALL).group('markup')
+    except:
+        return ''
     
 def s_suffix(number):
     """
@@ -374,9 +379,51 @@ def render_dates(new_date, timestamp, markup):
     return html
     
 def new_day(post_before, post):
+    """
+    Check if a day is new or not.
+    
+    new_day(obj, obj) -> bool
+    """
     dt_before = datetime.fromtimestamp(post_before._attr['unix-timestamp'])
     dt_after = datetime.fromtimestamp(post._attr['unix-timestamp'])
     
     if dt_before.day == dt_after.day and dt_before.month == dt_after.month and dt_before.year == dt_after.year: 
         return False
     return True
+    
+def replace_with_static_urls(markup):
+    """
+    Replaces paths to files on the server with locally served versions
+    
+    replace_with_static(str) -> str
+    """
+    output = markup
+    urls = []
+    for filename in os.listdir('static'):
+        
+        try:
+            urls += re.findall(r'src=\"(?P<url>.+%s)\"' % filename, output)
+        except:
+            pass
+            
+        try:
+            urls += re.findall(r'url\(\'(?P<url>.+%s)\'\)' % filename, output)
+        except:
+            pass
+            
+        try:
+            urls += re.findall(r'url\((?P<url>.+%s)\)' % filename, output)
+        except:
+            pass
+            
+        for url in urls:
+            output = output.replace(url, '/%s' % filename)
+    return output
+    
+def extract_colours(markup):
+    """
+    Extracts the meta colours from given markup
+    
+    extract_colours(str) -> list
+    """
+    return re.findall(r'<meta name="color:.+" content="#(.+)"/>', markup)

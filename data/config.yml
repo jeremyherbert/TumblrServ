@@ -2,14 +2,11 @@ publishing_info:
     url: http://ilikewatermelon.tumblr.com
     username: penjuin@gmail.com
     password: cake
-    
-helpers:
-    fake_followers: yes
-    fake_notes: yes
 
 defaults:
     theme_name: theme 
     data_name: data  # the extension will be automatically appended
+    rss_url: http://example.tumblr.com/rss
     
 optimisations:
     do_nothing: no
