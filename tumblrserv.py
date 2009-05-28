@@ -21,7 +21,7 @@
 ##    Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 
 ##    02110-1301, USA.
 
-import os, sys, ftplib, yaml, cherrypy, re, pdb, urllib2, traceback
+import os, sys, ftplib, yaml, cherrypy, re, urllib2
 
 from src.post_classes import *
 from src import json

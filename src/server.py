@@ -20,7 +20,7 @@
 ##    Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 
 ##    02110-1301, USA.
 
-import cherrypy, pdb
+import cherrypy
 from support import *
 from server import *
 from post_classes import *

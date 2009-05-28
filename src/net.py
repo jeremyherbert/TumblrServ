@@ -72,7 +72,6 @@ tumblrserv.py --pull-data http://example.tumblr.com""")
     try:
         data = json.read(json_markup)
     except Exception, detail:
-        pdb.set_trace()
         err_exit("The url %s does not contain valid json." % url)
     
     if should_return_data:

@@ -20,7 +20,7 @@
 ##    Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 
 ##    02110-1301, USA.
 
-import re, sys, os, yaml, pdb
+import re, sys, os, yaml
 from datetime import datetime
 
 post_types = ['Regular', 'Photo', 'Quote', 'Link', 'Conversation', 'Video',\

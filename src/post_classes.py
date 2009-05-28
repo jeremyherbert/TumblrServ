@@ -24,7 +24,7 @@
 # types of posts
 #
 # text, photo, quote, link, chat, audio, video
-import sys, re, pdb
+import sys, re
 
 from support import *    
 
