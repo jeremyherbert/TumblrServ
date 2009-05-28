@@ -1,12 +1,35 @@
-# support.py
+##    tumblrserv.py implements a Tumblr (http://www.tumblr.com) markup parsing
+##    engine and compatible webserver.
+##      This is support.py which contains various helper functions.
+##
+##    Copyright (C) 2009 Jeremy Herbert
+##    Contact mailto:jeremy@jeremyherbert.net
+##
+##    This program is free software; you can redistribute it and/or
+##    modify it under the terms of the GNU General Public License
+##    as published by the Free Software Foundation; either version 2
+##    of the License, or (at your option) any later version.
+##    
+##    This program is distributed in the hope that it will be useful,
+##    but WITHOUT ANY WARRANTY; without even the implied warranty of
+##    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+##    GNU General Public License for more details.
+##    
+##    You should have received a copy of the GNU General Public License
+##    along with this program; if not, write to the Free Software
+##    Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 
+##    02110-1301, USA.
+
 import re, sys, os, yaml, pdb
 from datetime import datetime
 
-post_types = ['Regular', 'Photo', 'Quote', 'Link', 'Conversation', 'Video', 'Audio', 'Conversation']
+post_types = ['Regular', 'Photo', 'Quote', 'Link', 'Conversation', 'Video',\
+ 'Audio', 'Conversation']
 
 def within_constraints(constraints):
     """
-    Check if a list of constraints has been met. If not, print the error message.
+    Check if a list of constraints has been met. If not, print the error
+    message.
     
     within_constraints(list[(bool, str)]) -> bool
     """
@@ -14,7 +37,9 @@ def within_constraints(constraints):
     for outcome, message in constraints:
         if not outcome: # if a particular test failed
             print "An error occurred: " + str(message) # print it
-            return_val = False # we do this so that all of the errors show up, not just one
+            
+            # we do this so that all of the errors show up, not just one
+            return_val = False 
     return return_val
     
 def has_keys(dict_to_check, keys):
@@ -33,8 +58,9 @@ def replace_several(replacements, instring):
     """
     outstring = instring
     for to_replace, replacement in replacements:
-        # This can occasionally cause a Unicode error. Hopefully I fixed that problem but it is 
-        # still here to make sure nothing breaks (untrusted data is untrusted data after all)
+        # This can occasionally cause a Unicode error. Hopefully I fixed that
+        # problem but it is still here to make sure nothing breaks (untrusted
+        # data is untrusted data after all)
         try:
             outstring = outstring.replace(to_replace, replacement) 
         except: 
@@ -43,7 +69,8 @@ def replace_several(replacements, instring):
     
 def render_conditional_block(block_name, tag_contents_list, instring):
     """
-    If data is available, renders a conditional block. If the data is not available, it deletes the block. For example:
+    If data is available, renders a conditional block. If the data is not
+    available, it deletes the block. For example:
     
     if the passed data is 'hello':
     {block:Caption}<p>{Caption}</p>{/block:Caption} -> <p>hello</p>
@@ -64,7 +91,8 @@ def render_conditional_block(block_name, tag_contents_list, instring):
         return outstring
 
     else:
-           # if we get here, there is no data provided, so destroy the tags and everything in between
+           # if we get here, there is no data provided, so destroy the tags and
+           # everything in between
            return delete_block(block_name, instring)
            
 def delete_block(block_name, instring):
@@ -73,18 +101,21 @@ def delete_block(block_name, instring):
     
     delete_block(str, str) -> str
     """
-    return re.sub(re.compile(r'{block:%s}.+{/block:%s}' % (block_name, block_name), re.DOTALL), '', instring) 
+    return re.sub(re.compile(r'{block:%s}.+{/block:%s}' % (block_name,\
+     block_name), re.DOTALL), '', instring) 
            
 def nice_number_formatting(number):
     """
-    Puts commas into a number at every third spot to make the number more readable (this was surprisingly hard to do efficiently).
+    Puts commas into a number at every third spot to make the number more
+    readable (this was surprisingly hard to do efficiently).
     
     nice_number_formatting(int) -> str
     """
     liststr = list(str(number)) 
     liststr.reverse() # turn the number into a list and reverse it
     
-    # as the list gets one element larger each time we add a comma, we put one in every (n+n/3) spot
+    # as the list gets one element larger each time we add a comma, we put one
+    # in every (n+n/3) spot
     for n in range(0,len(liststr),3): liststr.insert(n+n/3, ',') 
     liststr.reverse()
     return ''.join(liststr[:-1]) # drop off the comma at the end
@@ -98,7 +129,9 @@ def replace_all_except_block(block_name, markup):
     output = markup
     for block in post_types:
         if not block_name == block:
-            output = re.sub(re.compile(r'{block:%s}.+{/block:%s}' % (block, block), re.DOTALL), '', output)
+            output = re.sub(re.compile(r'{block:%s}.+{/block:%s}' % (block,\
+             block), re.DOTALL), '', output)
+             
     output = replace_several([
         ('{block:%s}' % (block_name), ''),
         ('{/block:%s}' % (block_name), ''),
@@ -160,11 +193,13 @@ def is_url(string_to_check):
     
 def insert_meta_colours(markup):
     """
-    Extracts the colours from the theme file and inserts them in the tag locations.
+    Extracts the colours from the theme file and inserts them in the tag
+    locations.
     
     insert_meta_colours(str) -> str
     """
-    meta_colours = re.findall(r'name=\"color:(.+)\" content=\"#([0-9A-Fa-f]{3,6})\"', markup)
+    meta_colours = re.findall(r'name=\"color:(.+)\"\
+ content=\"#([0-9A-Fa-f]{3,6})\"', markup)
     for name, colour in meta_colours:
         markup = markup.replace("{color:%s}" % name, "#" + colour)
         
@@ -186,17 +221,20 @@ def get_config(path):
     get_config(str) -> dict
     """
     
-    if not os.path.exists(path): err_exit("The configuration file at %s does not exist." % path)
+    if not os.path.exists(path): err_exit("The configuration file at %s\
+ does not exist." % path)
     
     config_handle = open(path, 'U')
     try:
         config = yaml.load(config_handle.read())
     except Exception, detail:
-        err_exit("The configuration file is not valid yaml. The error given was:\n%s" % str(detail))
+        err_exit("The configuration file is not valid yaml. The error given\
+ was:\n%s" % str(detail))
         
     config_handle.close()
     
-    set_if_nexists(config, 'defaults', {'theme_name':'theme', 'data_name:':'data'}) # set the default values
+    set_if_nexists(config, 'defaults', {'theme_name':'theme',\
+ 'data_name:':'data'}) # set the default values
     set_if_nexists(config['defaults'], 'theme_name', 'theme')
     set_if_nexists(config['defaults'], 'data_name', 'data')
     
@@ -208,13 +246,15 @@ def get_data(path):
     
     get_data(str) -> dict
     """
-    if not os.path.exists(path): err_exit("The data file at %s does not exist." % path)
+    if not os.path.exists(path): err_exit("The data file at %s does not exist."\
+ % path)
     
     data_handle = open(path, 'U')
     try:
         data = yaml.load(data_handle.read())
     except Exception, detail:
-        err_exit("The data is not valid yaml. The error given was:\n%s" % str(detail))
+        err_exit("The data is not valid yaml. The error given was:\n%s" %\
+ str(detail))
         
     data_handle.close()
     
@@ -226,7 +266,8 @@ def get_markup(path):
     
     get_data(str) -> dict
     """
-    if not os.path.exists(path): err_exit("The theme file at %s does not exist." % path)
+    if not os.path.exists(path): err_exit("The theme file at %s does not \
+exist." % path)
     
     markup_handle = open(path, 'U')
     markup = markup_handle.read()
@@ -247,7 +288,8 @@ def extract_post_markup(markup):
     extract_post_markup(str) -> str
     """
     try:
-        return re.search(r'{block:Posts}(?P<markup>.+){/block:Posts}', markup, re.DOTALL).group('markup')
+        return re.search(r'{block:Posts}(?P<markup>.+){/block:Posts}', markup,\
+         re.DOTALL).group('markup')
     except:
         return ''
     
@@ -290,7 +332,8 @@ def contextual_time(dt):
     weeks = days/7
     years = days/365
     
-    # months is tricky; we need to keep subtracting days until we reach < month length
+    # months is tricky; we need to keep subtracting days until we 
+    # reach < month length
     d = days - 365*years
     m = 0
     
@@ -305,7 +348,8 @@ def contextual_time(dt):
     
     outstring = ''
     for time in times:
-        exec('outstring = str(%ss) + " %s" + s_suffix(%ss) + " ago" if %ss else ""' % (time, time, time, time) )
+        exec('outstring = str(%ss) + " %s" + s_suffix(%ss) + " ago" if %ss else\
+ ""' % (time, time, time, time) )
         if outstring:
             return outstring
     
@@ -387,7 +431,8 @@ def new_day(post_before, post):
     dt_before = datetime.fromtimestamp(post_before._attr['unix-timestamp'])
     dt_after = datetime.fromtimestamp(post._attr['unix-timestamp'])
     
-    if dt_before.day == dt_after.day and dt_before.month == dt_after.month and dt_before.year == dt_after.year: 
+    if dt_before.day == dt_after.day and dt_before.month == dt_after.month and\
+     dt_before.year == dt_after.year: 
         return False
     return True
     

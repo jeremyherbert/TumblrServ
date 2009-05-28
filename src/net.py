@@ -1,4 +1,25 @@
-# Contains functions related to data transfer to and from tumblr
+##    tumblrserv.py implements a Tumblr (http://www.tumblr.com) markup parsing
+##    engine and compatible webserver.
+##      This is net.py which contains functions related to data transfer to 
+##      and from tumblr.
+##
+##    Copyright (C) 2009 Jeremy Herbert
+##    Contact mailto:jeremy@jeremyherbert.net
+##
+##    This program is free software; you can redistribute it and/or
+##    modify it under the terms of the GNU General Public License
+##    as published by the Free Software Foundation; either version 2
+##    of the License, or (at your option) any later version.
+##    
+##    This program is distributed in the hope that it will be useful,
+##    but WITHOUT ANY WARRANTY; without even the implied warranty of
+##    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+##    GNU General Public License for more details.
+##    
+##    You should have received a copy of the GNU General Public License
+##    along with this program; if not, write to the Free Software
+##    Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 
+##    02110-1301, USA.
 
 import urllib, urllib2, cookielib, re, json, yaml, ClientForm
 
@@ -6,21 +27,26 @@ from support import *
 
 def pull_data(source, should_return_data=False):
     if is_url(source): # if the user provided a url
-        if source.find('/api/read/json') > -1: # and if they provided a url to a direct json source
+        # and if they provided a url to a direct json source
+        if source.find('/api/read/json') > -1: 
             url = source # let them keep their page size choice
         else:
-            if source[-1] == '/': source = source[:-1] # make sure there is no trailing slash
+            # make sure there is no trailing slash
+            if source[-1] == '/': source = source[:-1] 
             url = source + "/api/read/json?num=50"
-    elif re.match(r'^[^\ ]*$', source): # if the argument has no spaces, we are going to assume it is a username
+            
+    # if the argument has no spaces, we are going to assume it is a username
+    elif re.match(r'^[^\ ]*$', source): 
         url = "http://%s.tumblr.com/api/read/json?num=50" % source
     else:
-        err_exit("""An invalid datasource was given. Please use a tumblr username:
+        # exit with return code 1
+        err_exit("""An invalid datasource was given. Please use a tumblr  username:
         
 tumblrserv.py --pull-data example
 
 or a full url:
 
-tumblrserv.py --pull-data http://example.tumblr.com""") # exit with return code 1
+tumblrserv.py --pull-data http://example.tumblr.com""") 
     
     print "Pulling data from: %s" % url
     
@@ -36,6 +62,7 @@ tumblrserv.py --pull-data http://example.tumblr.com""") # exit with return code 
     # this saves a significant amount of complexity in saving files
     unicodes = re.findall(r'\\u[a-fA-F0-9]{4}', json_markup)
     for uni in unicodes: 
+        # convert to html representation
         json_markup = json_markup.replace(uni, "&#%s;" % (str(int(uni[2:], 16))) )
     
     # get rid of the javascript at the start of the json
@@ -54,7 +81,9 @@ tumblrserv.py --pull-data http://example.tumblr.com""") # exit with return code 
         print "Writing yaml...",
         # write the data out in yaml form
         yaml_handle = open('data/data.yml', 'w')
-        yaml_handle.write(yaml.dump(data, default_flow_style=False).replace('\_', ''))
+        yaml_handle.write(yaml.dump(data, \
+         default_flow_style=False).replace('\_', ''))
+
         print "done!\nPlease see data/data.yml for the exported tumblr data."
         sys.exit(0) # graceful exit
     
@@ -80,7 +109,8 @@ def publish_theme(url, username, password, html):
     try:
         resp = tumblr_opener.open('http://www.tumblr.com/customize')
     except:
-        err_exit('Could not access the tumblr customise page. Please check your login credentials.')
+        err_exit('Could not access the tumblr customise page. Please check your\
+ login credentials.')
     print "done"
     
     # parse the forms
@@ -93,7 +123,9 @@ def publish_theme(url, username, password, html):
     try:
         configuration_form = forms[2]
     except IndexError:
-        err_exit('The form data could not be extracted; it is likely that your internet connection is malfunctioning. Please check your credentials and try again later.')
+        err_exit('The form data could not be extracted; it is likely that your \
+internet connection is malfunctioning. Please check your credentials and try \
+ again later.')
         
     configuration_form['edit_tumblelog[custom_theme]'] = html
     
@@ -114,7 +146,8 @@ def publish_theme(url, username, password, html):
     try:
         resp2 = tumblr_opener.open(post_request_data)
     except urllib2.HTTPError, response2:
-        err_exit('An error occured when attempting to post the form data. Please check your login credentials.')
+        err_exit('An error occured when attempting to post the form data. \
+Please check your login credentials.')
     print "done"
 
     err_exit("Theme uploaded successfully.", 0)
