@@ -5,7 +5,7 @@
 #
 #################################
 
-import os, sys, ftplib, yaml, cherrypy, re, pdb, urllib2
+import os, sys, ftplib, yaml, cherrypy, re, pdb, urllib2, traceback
 
 from src.post_classes import *
 from src import json
@@ -50,7 +50,7 @@ if contains(arguments, '--pull-data'):
 if contains(arguments, '--publish'):
     if not has_keys(config['publishing_info'], ( 'url', 'username', 'password' )): 
         err_exit('The configuration file is missing some critical publishing information. Please make sure you have specified your url, username and password.')
-    publish_theme(config['publishing_info']['url'], config['publishing_info']['username'], config['publishing_info']['password'])
+    publish_theme(config['publishing_info']['url'], config['publishing_info']['username'], config['publishing_info']['password'], get_markup('themes/%s.thtml' % config['defaults']['theme_name']))
     
 if contains(arguments, '--theme-name'):
     if not os.path.exists("theme/" + next_arg(arguments, '--theme')):
@@ -58,4 +58,10 @@ if contains(arguments, '--theme-name'):
     config['defaults']['theme_name'] = next_arg(arguments, '--theme')
     
 # start the server up
-cherrypy.quickstart(TumblrServ(config))
+try:
+    cherrypy.quickstart(TumblrServ(config))
+except:
+    type, value, tb = sys.exc_info()
+    traceback.print_exc()
+    pdb.post_mortem(tb)
+    

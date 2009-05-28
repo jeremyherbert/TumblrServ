@@ -32,6 +32,11 @@ def generate_html(config, markup, data, posts=None):
     
     post_html = ''
     for post in posts:
+        post_index = posts.index(post)
+        if post_index != 0:
+            post.new_date = new_day( posts[post_index-1], post )
+        else:
+            post.new_date = True
         post_html += post.generate_html()
         
     html = re.sub(re.compile(r'{block:Posts}.*{/block:Posts}',re.DOTALL) , post_html, html )
@@ -48,26 +53,30 @@ def generate_html(config, markup, data, posts=None):
         print str(images)
         for image in images:
             # try to extract width, height
-            if image.find('width') > -1 and image.find('height') > -1:
-                height = re.search(r'height=(.+)&width=(.+)', image).group()
-            else:
-                # just draw a 50 by 50 box
-                height = '50'
-                width = '50'
-            html = html.replace(image, '<div style="background-color: #000" width=%s height=%s >&nbsp;</div>' % (width, height))
+            #if image.find('width') > -1 and image.find('height') > -1:
+            #    height = re.search(r'height=(.+)&width=(.+)', image).group()
+            #else:
+            #    # just draw a 50 by 50 box
+            #    height = '50'
+            #    width = '50'
+            width = 50
+            height = 50
+            html = html.replace(image, '<div style="background-color: #A8AD80; width: %spx; height: %spx" >&nbsp;</div>' % (width, height))
     
     if not config['optimisations']['display_embeds']:
-        embeds = re.findall(r'<embed.+>', html)
+        embeds = re.findall(r'<object.+</object>', html)
         print str(embeds)
         for embed in embeds:
             # try to extract width, height
-            if embed.find('width') > -1 and embed.find('height') > -1:
-                height= re.search(r'height=(.+)', embed).group()
-                width = re.search(r'width=(.+)', embed).group()
-            else:
-                # just draw a 50 by 50 box
-                height = '50'
-                width = '50'
-            html = html.replace(embed, '<div style="background-color: #000" width=%s height=%s >&nbsp;</div>' % (width, height))
+            #if embed.find('width') > -1 and embed.find('height') > -1:
+            #    height= re.search(r'height="(.+)">', embed).group()
+            #    width = re.search(r'width="(.+)">', embed).group()
+            #else:
+            #    # just draw a 50 by 50 box
+            #    height = '50'
+            #    width = '50'
+            width = 50
+            height = 50
+            html = html.replace(embed, '<div style="background-color: #5D917D; width: %spx; height: %spx;" >&nbsp;</div>' % (width, height))
     #pdb.set_trace()
     return html

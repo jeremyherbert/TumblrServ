@@ -1,12 +1,17 @@
 publishing_info:
     url: http://ilikewatermelon.tumblr.com
-    username: ilikewatermelon
-    password: cakecake
+    username: penjuin@gmail.com
+    password: cake
     
+helpers:
+    fake_followers: yes
+    fake_notes: yes
+
 defaults:
     theme_name: theme 
     data_name: data  # the extension will be automatically appended
     
 optimisations:
+    do_nothing: no
     display_embeds: yes
     display_images: yes

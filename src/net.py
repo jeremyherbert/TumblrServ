@@ -1,6 +1,6 @@
 # Contains functions related to data transfer to and from tumblr
 
-import urllib2, re, json, yaml
+import urllib, urllib2, cookielib, re, json, yaml, ClientForm, pdb
 
 from support import *
 
@@ -58,5 +58,57 @@ tumblrserv.py --pull-data http://example.tumblr.com""") # exit with return code 
         print "done!\nPlease see data/data.yml for the exported tumblr data."
         sys.exit(0) # graceful exit
     
-def publish_theme(url, username, password):
-    pass
+def publish_theme(url, username, password, html):
+    """
+    Publishes the theme to tumblr.
+    
+    publish_theme(url, username, password)
+    """
+    
+    cookiejar = cookielib.CookieJar()
+    tumblr_opener = urllib2.build_opener(urllib2.HTTPCookieProcessor(cookiejar))
+    
+    login = urllib.urlencode({'email': username, 'password': password})
+    
+    # now we get the auth cookie
+    print "Getting auth cookie...",
+    tumblr_opener.open('http://www.tumblr.com/login', login)
+    print "done"
+    
+    # now let's get our magic key from the page
+    print "Opening tumblr customize page...",
+    try:
+        resp = tumblr_opener.open('http://www.tumblr.com/customize')
+    except:
+        err_exit('Could not access the tumblr customise page. Please check your login credentials.')
+    print "done"
+    
+    # parse the forms
+    print "Parsing forms...",
+    forms = ClientForm.ParseResponse(resp, backwards_compat=False)
+    resp.close()
+    print "done"
+    
+    # we are interested in the 3rd form on the page
+    try:
+        configuration_form = forms[2]
+    except IndexError:
+        err_exit('The form data could not be extracted; it is likely that your internet connection is malfunctioning. Please try again later.')
+        
+    configuration_form['edit_tumblelog[custom_theme]'] = html
+    
+    post_request_data = configuration_form.click()
+    
+    #pdb.set_trace()
+    print "Posting new theme data...",
+    try:
+        resp2 = tumblr_opener.open(post_request_data)
+    except urllib2.HTTPError, response2:
+        err_exit('An error occured when attempting to post the form data. Please check your login credentials.')
+    print "done"
+    
+    #resp2 = tumblr_opener.open('http://www.tumblr.com/customize', upload_data)
+
+    err_exit("Theme uploaded successfully.", 0)
+        
+    

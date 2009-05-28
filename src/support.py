@@ -1,5 +1,6 @@
 # support.py
 import re, sys, os, yaml, pdb
+from datetime import datetime
 
 post_types = ['Regular', 'Photo', 'Quote', 'Link', 'Conversation', 'Video', 'Audio', 'Conversation']
 
@@ -52,7 +53,7 @@ def render_conditional_block(block_name, tag_contents_list, instring):
     render_conditional_block(str, list, str) -> str
     """
     #pdb.set_trace()
-    if tag_contents_list:
+    if tag_contents_list[0][1]: # if the first element has content
         outstring = replace_several([
                ('{block:%s}' % block_name, ''), # remove the block tags
                ('{/block:%s}' % block_name, ''), 
@@ -64,7 +65,15 @@ def render_conditional_block(block_name, tag_contents_list, instring):
 
     else:
            # if we get here, there is no data provided, so destroy the tags and everything in between
-           return re.sub(re.compile(r'{block:%s}.+{/block:%s}' % (block_name, block_name), re.DOTALL), '', instring) 
+           return delete_block(block_name, instring)
+           
+def delete_block(block_name, instring):
+    """
+    Deletes all references to a given block.
+    
+    delete_block(str, str) -> str
+    """
+    return re.sub(re.compile(r'{block:%s}.+{/block:%s}' % (block_name, block_name), re.DOTALL), '', instring) 
            
 def nice_number_formatting(number):
     """
@@ -220,6 +229,12 @@ def get_markup(path):
     markup = markup_handle.read()
     markup_handle.close()
     
+    # We need to transform a couple of tags so that old themes still work
+    markup = replace_several([
+        ('block:Text', 'block:Regular'),
+        ('block:Chat', 'block:Conversation'),
+        ], markup)
+    
     return markup
     
 def extract_post_markup(markup):
@@ -230,3 +245,138 @@ def extract_post_markup(markup):
     """
     
     return re.search(r'{block:Posts}(?P<markup>.+){/block:Posts}', markup, re.DOTALL).group('markup')
+    
+def s_suffix(number):
+    """
+    Returns s if number > 1
+    
+    s_suffix(int) -> str
+    """
+    return 's' if number > 1 else ''
+    
+def contextual_time(dt):
+    """
+    Generates a nice looking time string relative to now.
+    
+    contextual_time(datetime) -> str
+    """
+    month_length = {
+        1: 31, # January
+        2: 28, # Feburary
+        3: 31, # March
+        4: 30, # April
+        5: 31, # May
+        6: 30, # June
+        7: 31, # July
+        8: 31, # August
+        9: 30, # September
+        10: 31, # October
+        11: 30, # November
+        12: 31, # December
+        }
+    
+    dt_now = datetime.now()
+    time_delta = dt_now - dt
+    
+    seconds = time_delta.seconds
+    minutes = time_delta.seconds/60
+    hours = seconds/3600
+    days = time_delta.days
+    weeks = days/7
+    years = days/365
+    
+    # months is tricky; we need to keep subtracting days until we reach < month length
+    d = days - 365*years
+    m = 0
+    
+    while d > month_length[12-m]:
+        d -= month_length[12-m]
+        m += 1
+
+    months = 12*years + m
+    
+    times = ['second', 'minute', 'hour', 'day', 'week', 'month', 'year']
+    times.reverse()
+    
+    outstring = ''
+    for time in times:
+        exec('outstring = str(%ss) + " %s" + s_suffix(%ss) + " ago" if %ss else ""' % (time, time, time, time) )
+        if outstring:
+            return outstring
+    
+    # should never get here
+    err_exit('A broken timestamp was passed to contextual_time')
+    
+def number_suffix(number):
+    """
+    Returns 'st','nd','rd','th' depending on number
+    
+    number_suffix(int) -> str
+    """
+    last_number = str(number)[-1]
+    if last_number == 1:
+        return 'st'
+    elif last_number == 2:
+        return 'nd'
+    elif last_number == 3:
+        return 'rd'
+    else:
+        return 'th'
+    
+def render_dates(new_date, timestamp, markup):
+    """
+    Renders all of the date tags in markup.
+    
+    render_dates(bool, str, str) -> str
+    """
+    html = markup
+    # get the date from the timestamp
+    if not re.match(r'[0-9]*', str(timestamp)):
+        err_exit('Invalid timestamp given.')
+        
+    dt = datetime.fromtimestamp(timestamp)
+    
+    date_codes = [
+        ('DayOfMonth', str(dt.day)),
+        ('DayOfMonthWithZero', str(dt.day).zfill(2)),
+        ('DayOfWeek', dt.strftime('%A')),
+        ('ShortDayOfWeek', dt.strftime('%a')),
+        ('DayOfWeekNumber', dt.strftime('%w')),
+        ('DayOfMonthSuffix', number_suffix(dt.day)),
+        ('DayOfYear', dt.strftime('%j')),
+        ('WeekOfYear', dt.strftime('%U')),
+        ('Month', dt.strftime('%B')),
+        ('ShortMonth', dt.strftime('%b')),
+        ('MonthNumber', str(dt.month)),
+        ('MonthNumberWithZero', str(dt.month).zfill(2)),
+        ('Year', str(dt.year)),
+        ('ShortYear', str(dt.year)[2:]),
+        ('AmPm', dt.strftime('%p').lower()),
+        ('CaptialAmPm', dt.strftime('%p').upper()),
+        ('12Hour', dt.strftime('%I')),
+        ('24Hour', str(dt.hour)),
+        ('12HourWithZero', dt.strftime('%I').zfill(2)),
+        ('24HourWithZero', str(dt.hour).zfill(2)),
+        ('Minutes', str(dt.minute).zfill(2)),
+        ('Seconds', str(dt.second).zfill(2)),
+        ('Beats', str(dt.microsecond * 1000).zfill(2)),
+        ('Timestamp', str(timestamp)),
+        ('TimeAgo', contextual_time(dt)),
+        ]
+    
+    if new_date:
+        html = render_conditional_block('NewDayDate', date_codes, html)
+        html = delete_block('SameDayDate', html)
+    else:
+        html = render_conditional_block('SameDayDate', date_codes, html)
+        html = delete_block('NewDayDate', html)
+    
+    return html
+    
+def new_day(post_before, post):
+    dt_before = datetime.fromtimestamp(post_before._attr['unix-timestamp'])
+    dt_after = datetime.fromtimestamp(post._attr['unix-timestamp'])
+    
+    if dt_before.day == dt_after.day and dt_before.month == dt_after.month and dt_before.year == dt_after.year: 
+        return False
+    return True
